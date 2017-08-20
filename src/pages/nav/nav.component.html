@@ -1,0 +1,36 @@
+<header [class.show]="show" [class.init]="init">
+  <div class="container">
+    <h1>
+      <a href="#" (click)="goTo('home')">
+        <span>Robert</span> <span>Holden</span>
+      </a>
+    </h1>
+
+    <nav>
+      <ul>
+        <li>
+          <a (click)="goTo('home')">
+            <i class="fa fa-heart"></i> 
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a (click)="goTo('about')">
+            <i class="fa fa-coffee"></i> 
+            About
+          </a>
+        </li>
+
+        <li>
+          <a (click)="goTo('skillset')">
+            <i class="fa fa-trophy"></i> 
+            Skills
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="cl"></div>
+  </div>
+</header>

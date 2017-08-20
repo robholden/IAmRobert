@@ -1,0 +1,68 @@
+{
+  "posts": 
+  [ 
+    {
+      "id": 1,
+      "title": "Hello World", 
+      "subtitle": "A brand new headquarters", 
+      "category": "General",
+      "content": "",
+      "date": "2017-05-01",
+      "groupBy": "May"
+    },
+    {
+      "id": 2,
+      "title": "PHP Blog",
+      "subtitle": "Built with JQuery/Ajax and PHP",
+      "category": "",
+      "content": "<p>A blog built with a JQuery & Ajax framework with a PHP back-end. This was my first big PHP project, and was really the stepping step into back-end programmer - I haven't looked back since.</p><p>Even now (2017) looking at the work I did, I'm impressed with what I achieved. Even though the code itself is heavily outdated it's a reminder of how far I've gotten. It has given me inspiration to rebuild a new blog using C# & Angular.</p><h4>Features</h4><ul><li>I have my own admin panel, encrypted passwords, form validation, login securely</li><li>Create, edit and delete posts</li><li>Sort by date, time or popularity (based on IP's)</li><li>Create a keyword when a word has '#' before it</li><li>Search bar for searching keywords or a specific subject, this can be within a category or the whole blog</li><li>Embedded specific HTML tags within the posts</li><li>URL rewriting for individual posts</li><li>Posts are categorised</li><li>Responsive, fresh new design</li><li>Featured posts that appear at the top</li><li>Dynamic loading of posts when you hit the bottom of the page using AJAX</li><li>PHP, AJAX and MySQL commenting system</li><li>Upload function for admin</li><li>Admin panel now has a guest login to see behind the scenes</li></ul><a class='button' href='http://blog.iamrobert.co.uk' target='_blank'>See it here</a>",
+      "date": "2017-05-02",
+      "groupBy": "May"
+    },
+    {
+      "id": 3,
+      "title": "Hello World", 
+      "subtitle": "A brand new headquarters", 
+      "category": "General",
+      "content": "",
+      "date": "2017-05-01",
+      "groupBy": "May"
+    },
+    {
+      "id": 4,
+      "title": "Hello World", 
+      "subtitle": "A brand new headquarters", 
+      "category": "General",
+      "content": "",
+      "date": "2017-05-01",
+      "groupBy": "May"
+    },
+    {
+      "id": 5,
+      "title": "Hello World", 
+      "subtitle": "A brand new headquarters", 
+      "category": "General",
+      "content": "",
+      "date": "2017-05-01",
+      "groupBy": "May"
+    },
+    {
+      "id": 6,
+      "title": "Hello World", 
+      "subtitle": "A brand new headquarters", 
+      "category": "General",
+      "content": "",
+      "date": "2017-05-01",
+      "groupBy": "May"
+    }
+  ],
+
+  "loginSuccess": {
+    "state": true,
+    "token": "234092uoijfkeh38h4iukdkjf309o3i4lfkmd"
+  },
+
+  "loginFail": {
+    "state": false
+  }
+}

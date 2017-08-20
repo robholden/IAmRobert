@@ -1,0 +1,64 @@
+/* THE CCTV BODY */
+#cctv-holder {
+	position:fixed;
+	display:block;
+	top:$nav-height;
+	right:10px;
+	height:105px;
+	width:160px;
+	z-index:997;
+	
+	#blinker-holder {
+		position:absolute;
+		display:block;
+		bottom:30px;
+		width:120px;
+		right:20px;
+		height:35px; 
+		z-index:999999;
+	}
+	
+	#blinker {
+		position:absolute;
+		top:8px;
+		left:40px;
+		height:8px;
+		width:8px;
+		border-radius:50%;
+		background:#EEE;
+	}
+	
+	#cctv-body {
+		position:relative;
+		display:block;
+		float:right;
+		margin-top:0;
+		margin-right:40px;
+		margin-bottom:-10px;
+		width:20px;
+		height:50px;
+		background:url(/assets/cctv-body.png) no-repeat center;
+		background-size:cover;
+	}
+	
+	#cctv-head {
+		position:relative;
+		clear:both;
+		display:block;
+		margin:auto;
+		width:120px;
+		height:35px;
+		background:url(/assets/cctv-head.png) no-repeat center;
+		background-size:cover;
+	}	
+}
+
+#cctv-holder #blinker-holder #blinker.on{
+	background: #EEE;
+	animation: flash 1s ease-in-out infinite alternate;
+}
+
+@include keyframes(flash) {
+	from { background: #EEE; }       
+	to { background: #FF4444; }       
+}
