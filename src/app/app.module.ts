@@ -23,6 +23,11 @@ export const routerConfig: Routes = [
         data: { page: 'About' }
     },
     {
+        path: 'projects',
+        component: IndexComponent,
+        data: { page: 'Projects' }
+    },
+    {
         path: 'blog',
         component: IndexComponent,
         data: { page: 'Blog' }

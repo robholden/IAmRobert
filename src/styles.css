@@ -2623,7 +2623,8 @@ header {
 #home {
   text-align: center;
   font-family: "Alegreya Sans SC";
-  display: flex; }
+  display: flex;
+  padding: 2em 1.5em; }
   #home .retro-logo {
     transition: none;
     display: inline-block;
@@ -2643,7 +2644,7 @@ header {
       font-size: 3.75em; }
     #home .full-stack div {
       display: inline-block;
-      width: 200px;
+      width: 12.5%;
       height: 18px;
       margin: 0 2em;
       border-top: 4px solid #000;
@@ -2687,7 +2688,8 @@ header {
     #home .full-stack {
       padding: 1em 0; }
       #home .full-stack h2 {
-        font-size: 2.75em; }
+        font-size: 2.75em;
+        padding: 0 0.25em; }
       #home .full-stack div {
         width: 30px;
         height: 10px;
@@ -2697,7 +2699,8 @@ header {
     #home .location {
       font-size: 2em; }
       #home .location span {
-        width: 300px; }
+        display: block;
+        width: 100%; }
         #home .location span:first-child {
           font-size: 0.8em; } }
 

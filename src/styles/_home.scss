@@ -2,6 +2,7 @@
   text-align: center;
   font-family: $block-font;
   display: flex;
+  padding: 2em 1.5em;
 
   .retro-logo {
     transition: none;
@@ -29,7 +30,7 @@
 
     div {
       display: inline-block;
-      width: 200px; 
+      width: 12.5%; 
       height: 18px;
       margin: 0 2em;
       border-top: 4px solid $dark-black;
@@ -106,6 +107,7 @@
   
       h2 {
         font-size: 2.75em;
+        padding: 0 0.25em;
       }
   
       div {
@@ -121,7 +123,8 @@
       font-size: 2em;
   
       span {
-        width: 300px;
+        display: block;
+        width: 100%;
   
         &:first-child {
           font-size: 0.8em;
