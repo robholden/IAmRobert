@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Http } from '@angular/http';
 import { Title } from '@angular/platform-browser';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
@@ -24,14 +25,15 @@ export class IndexComponent implements OnInit {
     private _sanitizer: DomSanitizer,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _title: Title
+    private _title: Title,
+    private _http: Http
   ) {
     this._route.data
-    .subscribe(data => {
-      const title = data.page ? data.page : 'Home';
-      this._title.setTitle(`Robert Holden » ${title}`);
-      this.page = data.page;
-    });
+      .subscribe(data => {
+        const title = data.page ? data.page : 'Home';
+        this._title.setTitle(`Robert Holden » ${title}`);
+        this.page = data.page;
+      });
   }
 
   scrollTo(id: string): void {
@@ -70,5 +72,7 @@ export class IndexComponent implements OnInit {
     }
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    
+  }
 }

@@ -4,17 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
-import { GlobalVariables } from '../variables/variables.global';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
-
 import { AppComponent } from './app.component';
-import { IndexComponent } from '../pages/index/index.component';
-import { NavComponent } from '../pages/nav/nav.component';
+import { IndexComponent } from './index/index.component';
+import { NavComponent } from './nav/nav.component';
 
-import { CCTVComponent } from '../pages/cctv/cctv.component';
-import { LoadingComponent } from '../pages/loading/loading.component';
-
-// enableProdMode();
+import { CCTVComponent } from './cctv/cctv.component';
+import { LoadingComponent } from './loading/loading.component';
 
 export const routerConfig: Routes = [
     {
@@ -54,7 +49,7 @@ export const routerConfig: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [CookieService, GlobalVariables, Title],
+  providers: [Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

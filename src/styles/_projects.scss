@@ -1,0 +1,55 @@
+.project {  
+  padding: 0;
+  height: auto;
+  min-height: auto;
+  background: #000;
+  
+  .content, .slides {
+    display: inline-block;
+    z-index: 2;
+  }
+
+  .content {
+    background: $white;
+    width: 50%;
+    padding: 2em;
+
+    > div {
+      margin-top: 1em;
+      line-height: 1.75;
+
+      p {
+        margin-bottom: 1em;
+      }
+
+      ul {
+        list-style: circle;
+        
+        li {
+          margin-left: 35px;
+        }
+      } 
+    }    
+  }
+
+  .slides {
+    width: 50%;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: center no-repeat;
+    background-size: cover;
+  }
+
+  &.slide-right {
+    .slide {
+      right: 0;
+    }
+  }
+}

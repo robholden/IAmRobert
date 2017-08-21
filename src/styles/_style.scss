@@ -1,4 +1,4 @@
-@import 'bourbon'; 
+@import 'bourbon/bourbon'; 
 @import 'fa/fa'; 
 @import 'variables';
 @import 'reset';
@@ -6,6 +6,6 @@
 @import 'layout';
 @import 'navigation'; 
 @import 'home';
-@import 'blog';
 @import 'loader';
 @import 'cctv';
+@import 'projects';
