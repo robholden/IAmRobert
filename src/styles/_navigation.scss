@@ -57,17 +57,35 @@ header {
         }
       }
     }
+
+    @media (max-width: 768px) {
+      ul {
+        li {
+          padding: 0.25em;
+          
+          a {
+            margin-right: 0.15em;
+
+            i {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }      
   }
 
-  &.show {
-    h1 {
-      top: -3px;
-      opacity: 1;
-      z-index: 1;
-    }
-
-    nav {
-      width: 550px;
+  @media (min-width: 768px) {
+    &.show {
+      h1 {
+        top: -3px;
+        opacity: 1;
+        z-index: 1;
+      }
+  
+      nav {
+        width: 450px;
+      }
     }
   }
 }

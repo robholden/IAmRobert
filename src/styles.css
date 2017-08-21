@@ -2464,6 +2464,9 @@ section {
     color: #f66;
     font-family: "Cookie";
     text-shadow: 1px 1px #999; }
+    @media (max-width: 768px) {
+      section h1 {
+        font-size: 3.5rem; } }
   section h2 {
     font-size: 2rem;
     color: #777;
@@ -2602,12 +2605,20 @@ header {
           color: #4d9ac9; }
           header nav ul li a:hover i {
             color: #4d9ac9; }
-  header.show h1 {
-    top: -3px;
-    opacity: 1;
-    z-index: 1; }
-  header.show nav {
-    width: 550px; }
+    @media (max-width: 768px) {
+      header nav ul li {
+        padding: 0.25em; }
+        header nav ul li a {
+          margin-right: 0.15em; }
+          header nav ul li a i {
+            margin-right: 0; } }
+  @media (min-width: 768px) {
+    header.show h1 {
+      top: -3px;
+      opacity: 1;
+      z-index: 1; }
+    header.show nav {
+      width: 450px; } }
 
 #home {
   text-align: center;
@@ -2668,6 +2679,27 @@ header {
         color: #4d9ac9; }
       #home .icons ul li.instagram a {
         color: #3b6a94; }
+  @media (max-width: 768px) {
+    #home .retro-logo {
+      padding: 2em 0; }
+    #home h1 {
+      font-size: 2.5rem; }
+    #home .full-stack {
+      padding: 1em 0; }
+      #home .full-stack h2 {
+        font-size: 2.75em; }
+      #home .full-stack div {
+        width: 30px;
+        height: 10px;
+        margin: 2em 0;
+        border-top-width: 2px;
+        border-bottom-width: 2px; }
+    #home .location {
+      font-size: 2em; }
+      #home .location span {
+        width: 300px; }
+        #home .location span:first-child {
+          font-size: 0.8em; } }
 
 .home-image {
   display: inline-block;
@@ -2934,6 +2966,10 @@ header {
   to {
     background: #FF4444; } }
 
+@media (max-width: 768px) {
+  #cctv-holder {
+    display: none; } }
+
 .project {
   padding: 0;
   height: auto;
@@ -2968,3 +3004,13 @@ header {
     background-size: cover; }
   .project.slide-right .slide {
     right: 0; }
+  @media (max-width: 768px) {
+    .project .content {
+      display: block;
+      width: 100%; }
+    .project .slides {
+      display: none; }
+    .project .slide {
+      position: relative;
+      width: 100%;
+      height: 35vh; } }

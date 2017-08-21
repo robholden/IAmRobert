@@ -31,6 +31,10 @@ section {
     color: $orange;
     font-family: $fancy-font;
     text-shadow: 1px 1px #999;
+
+    @media (max-width: 768px) {
+      font-size: 3.5rem;
+    }      
   }
 
   h2 {

@@ -62,3 +62,9 @@
 	from { background: #EEE; }       
 	to { background: #FF4444; }       
 }
+
+@media (max-width: 768px) {
+	#cctv-holder {
+		display: none;
+	}
+}
