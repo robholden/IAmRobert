@@ -1,0 +1,17 @@
+<section class="project" [class.slide-right]="dir === 'left'" [class.slide-left]="dir === 'right'">
+  <div class="slides" *ngIf="dir === 'right'"></div><!--
+  --><div class="content">
+    <h1 class="milestone fade-up">
+      {{ name }}
+    </h1>
+
+    <div class="milestone" [class.fade-right]="dir === 'right'" [class.fade-left]="dir === 'left'">
+      <ng-content></ng-content>
+    </div>
+  </div><div class="slides" *ngIf="dir === 'left'"></div><!--
+  -->
+  <div *ngIf="!image" class="slide" [style.background-image]="'url(/assets/projects/' + src + ')'"></div>
+  <div class="slide" *ngIf="image">
+    <img id="img" [src]="'/assets/projects/' + src" />
+  </div>
+</section>

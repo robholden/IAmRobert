@@ -3001,6 +3001,13 @@ header {
     height: 100%;
     background: center no-repeat;
     background-size: cover; }
+    .project .slide img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      bottom: 0;
+      margin: auto; }
   .project.slide-right .slide {
     right: 0; }
   @media (max-width: 768px) {
@@ -3013,3 +3020,58 @@ header {
       position: relative;
       width: 100%;
       height: 35vh; } }
+
+#selector-container {
+  height: 100%;
+  overflow: hidden;
+  user-select: none; }
+  #selector-container * {
+    transition: none; }
+
+#selector-move {
+  position: absolute;
+  box-shadow: 0 0 0 20000px rgba(0, 0, 0, 0.5);
+  /* border: 3px dotted black; */
+  cursor: move; }
+
+#selector-resize {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1; }
+
+#selector-resize div {
+  position: absolute;
+  width: 15px;
+  height: 15px; }
+
+#selector-resize .nw {
+  top: 0;
+  left: 0;
+  border-top: 5px solid black;
+  border-left: 5px solid black;
+  cursor: nw-resize; }
+
+#selector-resize .ne {
+  top: 0;
+  right: 0;
+  border-top: 5px solid black;
+  border-right: 5px solid black;
+  cursor: ne-resize; }
+
+#selector-resize .sw {
+  bottom: 0;
+  left: 0;
+  border-bottom: 5px solid black;
+  border-left: 5px solid black;
+  cursor: sw-resize; }
+
+#selector-resize .se {
+  bottom: 0;
+  right: 0;
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
+  cursor: se-resize; }

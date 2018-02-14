@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http } from '@angular/http';
 import { Title } from '@angular/platform-browser';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import * as Selector from 'image-area-selector';
 
 @Component({
   moduleId: module.id,
@@ -14,12 +15,7 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 export class IndexComponent implements OnInit {
   offset: SafeStyle;
   page: string;
-  contact: {name: string, email: string, message: string, sending: boolean} = {
-    name: '',
-    email: '',
-    message: '',
-    sending: false
-  };
+  selector: any;
 
   constructor(
     private _sanitizer: DomSanitizer,
@@ -34,6 +30,16 @@ export class IndexComponent implements OnInit {
         this._title.setTitle(`Robert Holden » ${title}`);
         this.page = data.page;
       });
+
+    this.selector = new Selector({
+      imgId: 'img',           // The id of the image to be used for selecting
+      className: '',          // The image will be surrounded by a div, you can give that div a class name
+      keepAspect: true,       // Allow any ratio, or keep the image ratio during resizing
+      minWidth: 100,           // Minimum allowed width (native)
+      maxWidth: 1000,          // Maximum allowed width (native)
+      minHeight: 100,          // Minimum allowed height (native)
+      maxHeight: 1000          // Maximum allowed height (native)
+    });
   }
 
   scrollTo(id: string): void {
@@ -72,7 +78,10 @@ export class IndexComponent implements OnInit {
     }
   }
 
-  ngOnInit() { 
-    
+  ngOnInit() {
+    setTimeout(() => {
+      this.selector.setup();
+      document.getElementById('img').onclick = (event) => this.selector.show();
+    }, 0);
   }
 }

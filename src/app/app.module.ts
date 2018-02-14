@@ -10,6 +10,7 @@ import { NavComponent } from './nav/nav.component';
 
 import { CCTVComponent } from './cctv/cctv.component';
 import { LoadingComponent } from './loading/loading.component';
+import { ProjectComponent } from './project/project.component';
 
 export const routerConfig: Routes = [
     {
@@ -46,7 +47,7 @@ export const routerConfig: Routes = [
 
 @NgModule({
   declarations: [
-      AppComponent, IndexComponent, NavComponent, LoadingComponent, CCTVComponent
+      AppComponent, IndexComponent, NavComponent, LoadingComponent, CCTVComponent, ProjectComponent
   ],
   imports: [
     RouterModule.forRoot(routerConfig),
