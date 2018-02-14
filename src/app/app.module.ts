@@ -29,14 +29,9 @@ export const routerConfig: Routes = [
         data: { page: 'Projects' }
     },
     {
-        path: 'blog',
+        path: 'skillset',
         component: IndexComponent,
-        data: { page: 'Blog' }
-    },
-    {
-        path: 'blog/:post',
-        component: IndexComponent,
-        data: { page: 'Blog' }
+        data: { page: 'Skills' }
     },
     {
         path: '**',
