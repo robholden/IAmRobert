@@ -78,8 +78,25 @@ export class IndexComponent implements OnInit {
     }
   }
 
+  @HostListener('window:resize', ['$event'])
+  resize() {
+    this.owl();
+  }  
+
+  owl() {
+    var owlslide = document.getElementById('owl_slide');
+    var owlcontent = document.getElementById('owl_content');
+    var img = document.getElementById('img');
+    if (img.clientHeight > owlslide.clientHeight) {
+      owlslide.style.height = `${ img.clientHeight }px`;
+      owlcontent.style.height = `${ img.clientHeight }px`;
+    }
+  }
+
   ngOnInit() {
-    setTimeout(() => {
+
+    setTimeout(() => {      
+      this.owl();
       this.selector.setup();
       document.getElementById('img').onclick = (event) => this.selector.show();
     }, 0);

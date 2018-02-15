@@ -24,7 +24,7 @@
     "@angular/router": "^4.4.6",
     "@types/node": "^6.0.100",
     "core-js": "^2.5.3",
-    "image-area-selector": "^1.1.1",
+    "image-area-selector": "^1.1.4",
     "rxjs": "^5.5.6",
     "typescript": "^2.7.1",
     "zone.js": "^0.8.20"
