@@ -80,7 +80,10 @@ export class IndexComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   resize() {
-    this.owl();
+    document.getElementById('owl_slide').removeAttribute('style');
+    document.getElementById('owl_content').removeAttribute('style');
+    
+    setTimeout(() => this.owl(), 0);
   }  
 
   owl() {
@@ -93,9 +96,11 @@ export class IndexComponent implements OnInit {
       return;
     }
 
-    if (img.clientHeight > owlslide.clientHeight) {
-      owlslide.style.height = `${ img.clientHeight }px`;
-      owlcontent.style.height = `${ img.clientHeight }px`;
+    var h = img.clientHeight > owlcontent.clientHeight ? img.clientHeight : owlcontent.clientHeight;
+    if (h > owlslide.clientHeight) {
+      owlslide.style.height = `${ h }px`;
+      if (window.innerWidth > 768) owlcontent.style.height = `${ h }px`;
+      else owlcontent.removeAttribute('style');
     }
   }
 
