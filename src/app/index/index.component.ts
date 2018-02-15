@@ -89,7 +89,7 @@ export class IndexComponent implements OnInit {
     var img = document.getElementById('img');
 
     if (img.clientHeight === 0) {
-      setTimeout(() => this.owl(), 0);
+      setTimeout(() => this.owl(), 100);
       return;
     }
 
