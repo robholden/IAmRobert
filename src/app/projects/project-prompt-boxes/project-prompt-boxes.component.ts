@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import * as PromptBoxes from 'prompt-boxes';
-
 
 @Component({
   selector: 'app-project-prompt-boxes',
@@ -10,7 +10,8 @@ import * as PromptBoxes from 'prompt-boxes';
 export class ProjectPromptBoxesComponent implements OnInit {
   private pb: any;
 
-  constructor() {
+  constructor(private _title: Title) {
+    this._title.setTitle(`Robert Holden » Prompt Boxes`);
     this.pb = new PromptBoxes();
   }
 
