@@ -18,6 +18,9 @@ import { ProjectListComponent } from './projects/project-list/project-list.compo
 import { ProjectFrankColucciComponent } from './projects/project-frank-colucci/project-frank-colucci.component';
 import { ProjectSnowCaptureComponent } from './projects/project-snow-capture/project-snow-capture.component';
 import { ProjectImageAreaSelectorComponent } from './projects/project-image-area-selector/project-image-area-selector.component';
+import { SkillsComponent } from './skills/skills.component';
+import { AboutComponent } from './about/about.component';
+import { ProjectPromptBoxesComponent } from './projects/project-prompt-boxes/project-prompt-boxes.component';
 
 export const routerConfig: Routes = [
   {
@@ -54,7 +57,7 @@ export const routerConfig: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, IndexComponent, NavComponent, LoadingComponent, CCTVComponent, ProjectComponent, ProjectViewComponent, ProjectListComponent, ProjectFrankColucciComponent, ProjectSnowCaptureComponent, ProjectImageAreaSelectorComponent
+    AppComponent, IndexComponent, NavComponent, LoadingComponent, CCTVComponent, ProjectComponent, ProjectViewComponent, ProjectListComponent, ProjectFrankColucciComponent, ProjectSnowCaptureComponent, ProjectImageAreaSelectorComponent, SkillsComponent, AboutComponent, ProjectPromptBoxesComponent
   ],
   imports: [
     RouterModule.forRoot(routerConfig),

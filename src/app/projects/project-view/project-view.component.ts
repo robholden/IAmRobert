@@ -7,7 +7,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./project-view.component.css']
 })
 export class ProjectViewComponent implements OnInit {
-  private projects: string[] = ['snow-capture', 'image-area-selector', 'frank-colucci'];
+  private projects: string[] = [
+    'snow-capture',
+    'image-area-selector',
+    'frank-colucci',
+    'prompt-boxes'
+  ];
   public project: string = '';
 
   constructor(

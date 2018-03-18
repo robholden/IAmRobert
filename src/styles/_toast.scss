@@ -1,0 +1,165 @@
+
+.toast, #sc-confirm, #sc-backdrop {
+  transition: ease 0.25s;
+
+  a, button, input, textarea, select, div {
+    transition: ease 0.25s;
+  }
+}
+
+/** Toast styles **/
+.toast {
+  display: inline;
+  position: fixed;
+  top: 0.25em;
+  left: 0;
+  right: 0;
+  max-width: 400px;
+  transform: scale(0);
+
+  margin: {
+    right: auto;
+    left: auto;
+  }
+  padding: 1em;
+  color: $white;
+  border-radius: 0;
+  text-align: center;
+
+  z-index: 9999;
+
+  &.success {
+    background: $blue;
+    border-bottom: 4px solid $dark-blue;
+  }
+
+  &.error {
+    background: $orange;
+    border-bottom: 4px solid $dark-orange;
+  }
+  
+    &.info {
+      color: $black;
+      background: $light-grey;
+      border-bottom: 4px solid $grey;
+    }
+
+  &.show {
+    transform: scale(1);
+  }
+
+  &.gone {
+    transform: scale(0);
+  }
+}
+
+#sc-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.8);
+
+  &.show {
+    opacity: 1;
+  }
+}
+
+#sc-confirm {
+  display: inline;
+  position: fixed;
+  top: 35%;
+  left: 0;
+  right: 0;
+  max-width: 375px;
+  transform: scale(0);
+
+  margin: {
+    top: -50px;
+    right: auto;
+    left: auto;
+  }
+  padding: 1em;
+  border-radius: 0;
+
+  background: $white;
+  border-bottom: 4px solid $grey;
+
+  z-index: 9999;
+
+  &.absolute {
+    margin-top: 25%;
+  }
+
+  p {
+    font-size: 1.05em;
+    margin: 0 0 0.75em;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid $light-grey;
+    font-size: 1em;
+    border-radius: 0;
+
+    &:focus, &:active {
+      outline: none;
+      border-color: $grey;
+    }
+  }
+
+  button {
+    display: inline-block;
+    background: transparent;
+    border-radius: 0;
+    border: 1px solid $blue;
+    padding: 0.5em 1em;
+    color: $blue;
+    font-size: 1em;
+    outline: none;
+    overflow: hidden;
+    cursor: pointer;
+    background: $white;
+    box-shadow: none;
+    font-size: 0.9em;
+
+    &:first-of-type {
+      color: $orange;
+      border: none;
+      border-bottom: 2px solid $orange;
+
+      &:hover, &.active {
+        background: $orange;
+        color: $white;
+      }
+    }
+
+    &:last-of-type {
+      float: right;
+      background: $blue;
+      color: $white;
+
+      &:hover {
+        background: $dark-blue;
+      }
+      
+      &[disabled] {
+        opacity: 0.5;
+        background: none;
+        border-color: $grey;
+        color: $dark-grey;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &.show {
+    transform: scale(1);
+  }
+}

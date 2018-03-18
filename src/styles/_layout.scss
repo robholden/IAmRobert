@@ -9,10 +9,17 @@
 }
 
 section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   padding: 5vh;
   color: $black;
   background-color: $light-grey;
-  @include calc(min-height, "100vh - #{$nav-height}");
+
+  &.full {
+    @include calc(min-height, "100vh - #{$nav-height}");
+  }
 
   &.white {
     background-color: $light-white;
@@ -82,6 +89,10 @@ section {
   .info-block {
     display: block;
     margin-top: 4em;
+
+    &:first-child {
+      margin-top: 0;
+    }
 
     h3 {
       font-size: 1.5rem;
