@@ -2445,14 +2445,15 @@ a {
   max-width: 1400px;
   margin: auto; }
 
+.first {
+  margin-top: 60px; }
+
 section {
   padding: 5vh;
   color: #252525;
   background-color: #EEE;
   min-height: -webkit-calc(100vh - 60px);
   min-height: calc(100vh - 60px); }
-  section.first {
-    margin-top: 60px; }
   section.white {
     background-color: #FFF; }
   section form {
@@ -2931,7 +2932,7 @@ header {
     margin-bottom: -10px;
     width: 20px;
     height: 50px;
-    background: url(/assets/cctv-body.png) no-repeat center;
+    background: url(/assets/images/cctv/cctv-body.png) no-repeat center;
     background-size: cover; }
   #cctv-holder #cctv-head {
     position: relative;
@@ -2940,7 +2941,7 @@ header {
     margin: auto;
     width: 120px;
     height: 35px;
-    background: url(/assets/cctv-head.png) no-repeat center;
+    background: url(/assets/images/cctv/cctv-head.png) no-repeat center;
     background-size: cover; }
 
 #cctv-holder #blinker-holder #blinker.on {
@@ -2968,6 +2969,16 @@ header {
 @media (max-width: 768px) {
   #cctv-holder {
     display: none; } }
+
+#project-img {
+  background-color: #F3F3F3;
+  text-align: center; }
+  #project-img img {
+    max-width: 100%;
+    margin: auto; }
+
+#project {
+  background: #FFF; }
 
 .project {
   padding: 0;
@@ -3001,12 +3012,6 @@ header {
     height: 100%;
     background: center no-repeat;
     background-size: cover; }
-    .project .slide img {
-      position: absolute;
-      width: 100%;
-      top: 0;
-      bottom: 0;
-      margin: auto; }
   .project.slide-right .slide {
     right: 0; }
   @media (max-width: 768px) {
@@ -3021,6 +3026,7 @@ header {
       height: 35vh; } }
 
 #selector-container {
+  display: inline-block;
   height: 100%;
   overflow: hidden;
   user-select: none; }

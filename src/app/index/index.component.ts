@@ -3,7 +3,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http } from '@angular/http';
 import { Title } from '@angular/platform-browser';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
-import * as Selector from 'image-area-selector';
 
 @Component({
   moduleId: module.id,
@@ -15,7 +14,6 @@ import * as Selector from 'image-area-selector';
 export class IndexComponent implements OnInit {
   offset: SafeStyle;
   page: string;
-  selector: any;
 
   constructor(
     private _sanitizer: DomSanitizer,
@@ -26,20 +24,9 @@ export class IndexComponent implements OnInit {
   ) {
     this._route.data
       .subscribe(data => {
-        const title = data.page ? data.page : 'Home';
-        this._title.setTitle(`Robert Holden » ${title}`);
-        this.page = data.page;
+        this.page = data.title ? data.title : 'Home';
+        this._title.setTitle(`Robert Holden » ${this.page}`);
       });
-
-    this.selector = new Selector({
-      imgId: 'img',           // The id of the image to be used for selecting
-      className: '',          // The image will be surrounded by a div, you can give that div a class name
-      keepAspect: true,       // Allow any ratio, or keep the image ratio during resizing
-      minWidth: 100,           // Minimum allowed width (native)
-      maxWidth: 1000,          // Maximum allowed width (native)
-      minHeight: 100,          // Minimum allowed height (native)
-      maxHeight: 1000          // Maximum allowed height (native)
-    });
   }
 
   scrollTo(id: string): void {
@@ -78,37 +65,6 @@ export class IndexComponent implements OnInit {
     }
   }
 
-  @HostListener('window:resize', ['$event'])
-  resize() {
-    document.getElementById('owl_slide').removeAttribute('style');
-    document.getElementById('owl_content').removeAttribute('style');
-    
-    setTimeout(() => this.owl(), 0);
-  }  
-
-  owl() {
-    var owlslide = document.getElementById('owl_slide');
-    var owlcontent = document.getElementById('owl_content');
-    var img = document.getElementById('img');
-
-    if (img.clientHeight === 0) {
-      setTimeout(() => this.owl(), 100);
-      return;
-    }
-
-    var h = img.clientHeight > owlcontent.clientHeight ? img.clientHeight : owlcontent.clientHeight;
-    if (h > owlslide.clientHeight) {
-      owlslide.style.height = `${ h }px`;
-      if (window.innerWidth > 768) owlcontent.style.height = `${ h }px`;
-      else owlcontent.removeAttribute('style');
-    }
-  }
-
   ngOnInit() {
-    setTimeout(() => {      
-      this.owl();
-      this.selector.setup();
-      document.getElementById('img').onclick = (event) => this.selector.show();
-    }, 0);
   }
 }

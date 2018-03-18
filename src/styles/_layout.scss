@@ -4,15 +4,15 @@
   margin: auto;
 }
 
+.first {
+  margin-top: $nav-height;
+}
+
 section {
   padding: 5vh;
   color: $black;
   background-color: $light-grey;
   @include calc(min-height, "100vh - #{$nav-height}");
-
-  &.first {
-    margin-top: $nav-height;
-  }
 
   &.white {
     background-color: $light-white;

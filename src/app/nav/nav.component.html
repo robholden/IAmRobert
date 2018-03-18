@@ -1,7 +1,7 @@
-<header [class.show]="show" [class.init]="init">
+<header [class.show]="show || routeRedirect" [class.init]="init">
   <div class="container">
     <h1>
-      <a href="#" (click)="goTo('home')">
+      <a routerLink="/" (click)="goTo('home')">
         <span>Robert</span> <span>Holden</span>
       </a>
     </h1>
@@ -9,28 +9,28 @@
     <nav>
       <ul>
         <li>
-          <a (click)="goTo('home')">
+          <a [routerLink]="routeRedirect ? '/' : null" (click)="goTo('home')">
             <i class="fa fa-heart"></i> 
             Home
           </a>
         </li>
 
         <li>
-          <a (click)="goTo('skillset')">
+          <a [routerLink]="routeRedirect ? '/skills' : null" (click)="goTo('skills')">
             <i class="fa fa-trophy"></i> 
             Skills
           </a>
         </li>
         
         <li>
-          <a (click)="goTo('projects')">
+          <a [routerLink]="routeRedirect ? '/projects' : null" (click)="goTo('projects')">
             <i class="fa fa-folder"></i> 
             Projects
           </a>
         </li>
 
         <li>
-          <a (click)="goTo('about')">
+          <a [routerLink]="routeRedirect ? '/about' : null" (click)="goTo('about')">
             <i class="fa fa-coffee"></i> 
             About
           </a>

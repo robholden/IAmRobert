@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -9,6 +10,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 })
 
 export class NavComponent implements OnInit {
+  @Input() routeRedirect: boolean = true;
   @Input() page: string;
   @Output() pageChange: EventEmitter<String> = new EventEmitter<String>();
 
@@ -17,10 +19,13 @@ export class NavComponent implements OnInit {
   show = false;
 
   constructor(
+    private _router: Router,
     private _location: Location
   ) { }
 
   goTo(page: string): void {
+    if (this.routeRedirect) return this._router.navigate[(page)];
+
     this._location.go(`/${page === 'home' ? '' : page}`);
     this.page = page;
     this.pageChange.emit();
@@ -47,7 +52,9 @@ export class NavComponent implements OnInit {
 
   @HostListener('document:scroll', ['$event'])
   scroll() {
-    const about = document.getElementById('about');
+    if (this.routeRedirect) return;
+
+    const about = document.getElementById('skills');
     const offset = about.offsetTop;
     const scrollY = window.pageYOffset + 1;
 
@@ -55,7 +62,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.page) {
+    if (this.page && !this.routeRedirect) {
       this.scrollTo(this.page, false);
     }
 
