@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.0</TargetFramework>
+        <AssemblyName>IAmRobert.Api</AssemblyName>
+        <RootNamespace>IAmRobert.Api</RootNamespace>
+        <Description>Api for Snow Capture.</Description>
+        <Company />
+        <Authors>Robert Holden</Authors>
+        <Product>IAmRobert</Product>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DocumentationFile>bin\Debug\netcoreapp2.0\IAmRobert.Api.xml</DocumentationFile>
+    </PropertyGroup>
+    <ItemGroup>
+        <Folder Include="wwwroot\" />
+        <Folder Include="Auth\" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="6.2.2" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.1" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.1" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="2.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.AspNetCore" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.0-preview1-final" />
+    </ItemGroup>
+    <ItemGroup>
+        <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.1.0-preview1-final" />
+        <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\IAmRobert.Core\IAmRobert.Core.csproj" />
+        <ProjectReference Include="..\IAmRobert.Data\IAmRobert.Data.csproj" />
+    </ItemGroup>
+</Project>

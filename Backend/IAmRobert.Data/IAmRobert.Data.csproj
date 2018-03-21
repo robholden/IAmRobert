@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.0</TargetFramework>
+        <Description>Data library for Snow Capture</Description>
+        <Authors>Robert Holden</Authors>
+        <Company />
+        <Product>IAmRobert</Product>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DocumentationFile>bin\Debug\netcoreapp2.0\IAmRobert.Data.xml</DocumentationFile>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.0-preview1-final" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.0</TargetFramework>
+        <Authors>Robert Holden</Authors>
+        <Company />
+        <Product>IAmRobert</Product>
+        <Description>Core library for Snow Capture.</Description>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DocumentationFile>bin\Debug\netcoreapp2.0\IAmRobert.Core.xml</DocumentationFile>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.1.0-preview1-final" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.0-preview1-final" />
+    </ItemGroup>
+    <ItemGroup>
+        <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.1.0-preview1-final" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\IAmRobert.Data\IAmRobert.Data.csproj" />
+    </ItemGroup>
+</Project>
