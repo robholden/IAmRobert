@@ -1,20 +1,14 @@
 ﻿using AutoMapper;
+using IAmRobert.Api.v1.Dtos;
+using IAmRobert.Core;
+using IAmRobert.Core.Services;
+using IAmRobert.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using IAmRobert.Api.v1.Dtos;
-using IAmRobert.Core;
-using IAmRobert.Core.Services;
-using IAmRobert.Data.Enums;
-using IAmRobert.Data.Models;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
 
 namespace IAmRobert.Api.v1.Controllers
 {
@@ -32,7 +26,7 @@ namespace IAmRobert.Api.v1.Controllers
         private readonly ILogger _logger;
         private IMapper _mapper;
         private IPostService _postService;
-        private IUserService _userService;
+        private IPostService _userService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PostsController"/> class.
@@ -46,7 +40,7 @@ namespace IAmRobert.Api.v1.Controllers
         public PostsController(
             IAccessLogService accessLogService,
             IPostService postService,
-            IUserService userService,
+            IPostService userService,
             IMapper mapper,
             IOptions<AppSettings> appSettings,
             ILogger<PostsController> logger)
@@ -59,15 +53,42 @@ namespace IAmRobert.Api.v1.Controllers
         }
 
         /// <summary>
-        /// Deletes a post
+        /// Creates a given post
         /// </summary>
+        /// <param name="post">"PostDto": the post to create</param>
         /// <returns>IActionResult</returns>
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpPost]
+        public IActionResult Create([FromBody]PostDto post)
         {
             try
             {
-                _postService.Delete(id);
+                // Create
+                var _post = _postService.Create(_mapper.Map<Post>(post));
+                return Ok(Mapper.Map<PostDto>(_post));
+            }
+            catch (AppException ex)
+            {
+                _logger.LogError(ex, "Register - AppException");
+                return BadRequest(ex.Validation ? ex.Message : "");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Register - Exception");
+                return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// Deletes the specified slug.
+        /// </summary>
+        /// <param name="slug">The slug.</param>
+        /// <returns></returns>
+        [HttpDelete("{slug}")]
+        public IActionResult Delete(string slug)
+        {
+            try
+            {
+                _postService.Delete(slug);
                 return Ok();
             }
             catch (AppException ex)
@@ -110,43 +131,65 @@ namespace IAmRobert.Api.v1.Controllers
         }
 
         /// <summary>
-        /// Creates a given post
+        /// Returns posts from provided search criteria
         /// </summary>
-        /// <param name="post">"PostDto": the post to create</param>
+        /// <param name="value">"string": a value to search</param>
+        /// <param name="orderBy">"string": the order to order by</param>
+        /// <param name="orderDir">"string": the order direction to order by</param>
+        /// <param name="page">"int": the page number</param>
         /// <returns>IActionResult</returns>
-        [HttpPost]
-        public IActionResult Create([FromBody]PostDto post)
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult Search(string value = "", string orderBy = "", string orderDir = "", int page = 1)
         {
             try
             {
-                // Create
-                var _post = _postService.Create(_mapper.Map<Post>(post));
-                return Ok(Mapper.Map<PostDto>(_post));
+                // Create where clause
+                Func<Post, bool> where = new Func<Post, bool>(x => x.Heading.ToLower().Contains((value ?? "").ToLower()));
+
+                // Return in given order
+                Func<Post, DateTime> order = null;
+                switch ((orderBy ?? "").ToLower())
+                {
+                    case "creationdate":
+                        order = new Func<Post, DateTime>(x => x.CreationDate);
+                        break;
+
+                    case "modifieddate":
+                        order = new Func<Post, DateTime>(x => x.ModifiedDate);
+                        break;
+                }
+
+                var posts = _postService.Search(where, order, orderDir ?? "", page);
+                return Ok(_mapper.Map<IList<PostDto>>(posts));
             }
             catch (AppException ex)
             {
-                _logger.LogError(ex, "Register - AppException");
+                _logger.LogError(ex, "Search - AppException");
                 return BadRequest(ex.Validation ? ex.Message : "");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Register - Exception");
+                _logger.LogError(ex, "Search - Exception");
                 return BadRequest();
             }
         }
 
         /// <summary>
-        /// Updates a post
+        /// Updates the specified post with a given slug.
         /// </summary>
-        /// <param name="post">"Setting": the data to update</param>
-        /// <returns>IActionResult</returns>
+        /// <param name="slug">The slug.</param>
+        /// <param name="post">The post.</param>
+        /// <returns></returns>
         [HttpPut]
-        public IActionResult Update([FromBody]PostDto post)
+        public IActionResult Update(string slug, [FromBody]PostDto post)
         {
             try
             {
-                _postService.Update(_mapper.Map<Post>(post));
-                return Ok();
+                var _post = _postService.GetBySlug(slug);
+                _post = _postService.Update(_post.Id, _mapper.Map<Post>(post));
+
+                return Ok(Mapper.Map<PostDto>(_post));
             }
             catch (AppException ex)
             {

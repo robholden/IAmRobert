@@ -1,0 +1,10 @@
+<div class="popup-backdrop" (click)="hide()"></div>
+
+<div class="popup-wrapper" [class.wide]="wide">
+  <ng-content></ng-content>
+
+  <div class="popup-close">
+    <a (click)="hide()" class="fa fa-times">
+    </a>
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, RoutesRecognized, NavigationEnd } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
     private _route: ActivatedRoute,
     private _router: Router,
     private _location: Location,
-    private _meta: Meta
+    private _meta: Meta,
+    public auth: AuthService
   ) {
     _router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -34,6 +36,22 @@ export class AppComponent {
 
       }
     });
+  }
+
+  login() {
+    let ref = window.location.pathname;
+    const invalid = ['login', 'register'];
+
+    invalid.forEach(path => {
+      if (ref.indexOf(path) > -1) ref = '/';
+    });
+
+    if (ref !== '/')  this._router.navigate(['/login'], { queryParams: { ref } });
+    else this._router.navigate(['/login']);
+  }
+
+  logout() {
+    this.auth.logout((status, error) => location.reload());
   }
 
   routeData(prop, separator = '') {

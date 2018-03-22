@@ -265,17 +265,23 @@ namespace IAmRobert.Api.v1.Controllers
         }
 
         /// <summary>
-        /// Updates a user
+        /// Updates the specified username.
         /// </summary>
-        /// <param name="setting">"Setting": the data to update</param>
-        /// <returns>IActionResult</returns>
+        /// <param name="username">The username.</param>
+        /// <param name="setting">The setting.</param>
+        /// <returns></returns>
+        /// <exception cref="AppException">
+        /// Password was entered incorrectly - true
+        /// or
+        /// Email address has already been registered - true
+        /// </exception>
         [HttpPut]
-        public IActionResult Update([FromBody]UserSettingDto setting)
+        public IActionResult Update(string username, [FromBody]UserSettingDto setting)
         {
             try
             {
                 // Auth
-                var _authUser = _userService.Login(setting.User.Username, setting.Password);
+                var _authUser = _userService.Login(username, setting.Password);
                 if (_authUser == null || _authUser.Username.ToLower() != User.Identity.Name)
                     throw new AppException("Password was entered incorrectly", true);
                 

@@ -5,22 +5,30 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { SlideshowModule } from 'ng-simple-slideshow';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent } from './app.component';
-import { IndexComponent } from './index/index.component';
-import { NavComponent } from './nav/nav.component';
 
-import { CCTVComponent } from './_directives/cctv/cctv.component';
-import { LoadingComponent } from './loading/loading.component';
-import { ProjectComponent } from './_directives/project/project.component';
-import { ProjectViewComponent } from './projects/project-view/project-view.component';
-import { ProjectListComponent } from './projects/project-list/project-list.component';
-import { ProjectFrankColucciComponent } from './projects/project-frank-colucci/project-frank-colucci.component';
-import { ProjectSnowCaptureComponent } from './projects/project-snow-capture/project-snow-capture.component';
-import { ProjectImageAreaSelectorComponent } from './projects/project-image-area-selector/project-image-area-selector.component';
-import { SkillsComponent } from './skills/skills.component';
-import { AboutComponent } from './about/about.component';
-import { ProjectPromptBoxesComponent } from './projects/project-prompt-boxes/project-prompt-boxes.component';
+import { NavComponent } from './directives/nav/nav.component';
+import { CCTVComponent } from './directives/cctv/cctv.component';
+import { ProjectComponent } from './directives/project/project.component';
+import { CookieLawComponent } from './directives/cookie-law/cookie-law.component';
+import { PopupComponent } from './directives/popup/popup.component';
+
+import { IndexComponent } from './pages/index/index.component';
+import { ProjectViewComponent } from './pages/projects/project-view/project-view.component';
+import { ProjectListComponent } from './pages/projects/project-list/project-list.component';
+import { ProjectFrankColucciComponent } from './pages/projects/project-frank-colucci/project-frank-colucci.component';
+import { ProjectSnowCaptureComponent } from './pages/projects/project-snow-capture/project-snow-capture.component';
+import { ProjectImageAreaSelectorComponent } from './pages/projects/project-image-area-selector/project-image-area-selector.component';
+import { SkillsComponent } from './pages/skills/skills.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ProjectPromptBoxesComponent } from './pages/projects/project-prompt-boxes/project-prompt-boxes.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AppConfig } from './app.config';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './services/auth.service';
+import { CommonService } from './services/common.service';
 
 export const routerConfig: Routes = [
   {
@@ -48,6 +56,14 @@ export const routerConfig: Routes = [
     component: ProjectViewComponent,
     data: { title: 'Project' }
   },
+
+
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'Login' }
+  },
+
   {
     path: '**',
     redirectTo: '/',
@@ -57,7 +73,22 @@ export const routerConfig: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, IndexComponent, NavComponent, LoadingComponent, CCTVComponent, ProjectComponent, ProjectViewComponent, ProjectListComponent, ProjectFrankColucciComponent, ProjectSnowCaptureComponent, ProjectImageAreaSelectorComponent, SkillsComponent, AboutComponent, ProjectPromptBoxesComponent
+    AppComponent,
+    IndexComponent,
+    NavComponent,
+    CCTVComponent,
+    ProjectComponent,
+    ProjectViewComponent,
+    ProjectListComponent,
+    ProjectFrankColucciComponent,
+    ProjectSnowCaptureComponent,
+    ProjectImageAreaSelectorComponent,
+    SkillsComponent,
+    AboutComponent,
+    ProjectPromptBoxesComponent,
+    LoginComponent,
+    CookieLawComponent,
+    PopupComponent
   ],
   imports: [
     RouterModule.forRoot(routerConfig),
@@ -66,7 +97,7 @@ export const routerConfig: Routes = [
     HttpModule,
     SlideshowModule
   ],
-  providers: [Title],
+  providers: [Title, AuthGuard, AppConfig, CookieService, AuthService, CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

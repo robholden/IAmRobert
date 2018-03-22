@@ -18,7 +18,8 @@ namespace IAmRobert.Tests
         [Fact]
         public Post CanCreatePost()
         {
-            var post = _postService.Create(new Post() {
+            var post = _postService.Create(new Post()
+            {
                 Heading = "Test Heading",
                 Blurb = "Test Blurb",
                 Body = "Test Body",
@@ -34,13 +35,26 @@ namespace IAmRobert.Tests
         [Fact]
         public void CanDeletePost()
         {
-            var post = _postService.GetBySlug("Test");
-            if (post == null) post = CanCreatePost();
+            var post = UpdateOrCreatePost();
 
             _postService.Delete(post.Id);
             post = _postService.GetBySlug("Test");
 
             Assert.Null(post);
+        }
+
+        [Fact]
+        public void CanSearchPosts()
+        {
+            var post = UpdateOrCreatePost();
+            var posts = _postService.Search(
+                new System.Func<Post, bool>(x => !x.Deleted),
+                new System.Func<Post, System.DateTime>(x => x.CreationDate),
+                "desc",
+                0
+            );
+
+            Assert.True(posts.Count > 0);
         }
 
         [Fact]
@@ -50,12 +64,24 @@ namespace IAmRobert.Tests
             if (post == null) post = CanCreatePost();
 
             post.Heading = "Updated";
-            _postService.Update(post);
+            _postService.Update(post.Id, post);
 
             post = _postService.GetBySlug(post.Slug);
 
             Assert.NotNull(post);
             Assert.True(post.Heading == "Updated");
+        }
+
+        /// <summary>
+        /// Updates the or create post.
+        /// </summary>
+        /// <returns></returns>
+        private Post UpdateOrCreatePost()
+        {
+            var post = _postService.GetBySlug("Test");
+            if (post == null) post = CanCreatePost();
+
+            return post;
         }
     }
 }

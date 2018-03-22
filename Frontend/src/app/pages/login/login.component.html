@@ -1,0 +1,26 @@
+<section id="page" class="singular">
+  <h2>Login</h2>
+  <div class="heading-break"></div>
+
+  <form #loginForm="ngForm" (submit)="login()" class="page-form">
+    <div class="form-block mg-bottom">
+      <label for="username">Username</label>
+      <input id="login-username" type="text" name="username" [(ngModel)]="username" required />
+    </div>
+
+    <div class="form-block mg-bottom">
+      <label for="password">Password</label>
+      <input id="login-password" type="password" name="password" [(ngModel)]="password" required />
+    </div>
+
+    <div class="form-block mg-bottom">
+      <input id="remember" class="sc-checkbox" type="checkbox" name="remember" [(ngModel)]="remember" />
+      <label for="remember">Remember me?</label>
+    </div>        
+
+    <button type="submit" class="button primary" [disabled]="(!loginForm.form.valid) || loading">
+      {{ loading ? 'Logging In' : 'Login' }}
+      <i class="fa fa-spinner fa-spin i-right" *ngIf="loading"></i>
+    </button>    
+  </form>
+</section>

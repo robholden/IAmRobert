@@ -26,6 +26,12 @@ namespace IAmRobert.Core.Services
         void Delete(int id);
 
         /// <summary>
+        /// Deletes a post with a given slug
+        /// </summary>
+        /// <param name="slug">"string": the posts' slug</param>
+        void Delete(string slug);
+
+        /// <summary>
         /// Returns a post with a given id
         /// </summary>
         /// <param name="id">"int": the post id</param>
@@ -52,9 +58,10 @@ namespace IAmRobert.Core.Services
         /// <summary>
         /// Updates the specified post.
         /// </summary>
+        /// <param name="id">The intentifier.</param>
         /// <param name="post">The post.</param>
         /// <returns></returns>
-        Post Update(Post post);
+        Post Update(int id, Post post);
     }
 
     /// <summary>
@@ -113,6 +120,15 @@ namespace IAmRobert.Core.Services
         }
 
         /// <summary>
+        /// Deletes a post with a given slug
+        /// </summary>
+        /// <param name="slug">"string": the posts' slug</param>
+        public void Delete(string slug)
+        {
+            _repo.Delete(GetBySlug(slug));
+        }
+
+        /// <summary>
         /// Returns a post with a given id
         /// </summary>
         /// <param name="id">"int": the post id</param>
@@ -159,21 +175,19 @@ namespace IAmRobert.Core.Services
         /// Updates the specified post.
         /// </summary>
         /// <param name="post">The post.</param>
+        /// <param name="id">The identifier.</param>
         /// <returns></returns>
         /// <exception cref="AppException">
         /// Post not found
         /// or
         /// true
         /// </exception>
-        public Post Update(Post post)
+        public Post Update(int id, Post post)
         {
             // Get post
-            var _post = GetById(post.Id);
-            if (_post == null)
-            {
-                _post = GetBySlug(post.Slug);
-                if (_post == null) throw new AppException("Post not found");
-            }
+            var _post = GetById(id);
+            if (_post == null || _post.Slug != post.Slug)
+                throw new AppException("Post not found");
 
             // Validate
             var error = Validate(post, post.Slug != _post.Slug);
