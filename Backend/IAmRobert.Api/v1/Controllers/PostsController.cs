@@ -115,6 +115,8 @@ namespace IAmRobert.Api.v1.Controllers
             try
             {
                 var post = _postService.GetBySlug(slug);
+                if (post == null) throw new AppException("Cannot find post");
+
                 var postDto = _mapper.Map<PostDto>(post);
                 return Ok(postDto);
             }

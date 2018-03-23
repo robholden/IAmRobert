@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
     // Call api for auth
     this._auth.isLoggedIn(
       (outcome) => {
-        if (! outcome) this._router.navigate(['/login'], { queryParams: { ref: state.url }});
+        if (! outcome) this._router.navigate(['/blog']);
       }
     )
 
@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
     if (this._auth.loggedIn) return true;
 
     // Not authorised!
-    this._router.navigate(['/login'], { queryParams: { ref: state.url }});
+    this._router.navigate(['/blog']);
     return false;
 
   }

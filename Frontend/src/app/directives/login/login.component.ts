@@ -13,15 +13,16 @@ import { CommonService } from '../../services/common.service';
   providers: [UserService, ToastService]
 })
 export class LoginComponent implements OnInit {
-  ref: '';
-  username: '';
-  password: '';
-  error = '';
-  loading = false;
-  remember = false;
-  code = '';
+  ref: string = '';
+  username: string = '';
+  password: string = '';
+  error: string = '';
+  loading: boolean = false;
+  remember: boolean = false;
+  code: string = '';
 
-  @Output() closePopup: EventEmitter<String> = new EventEmitter<String>();
+  @Input() show: false;
+  @Output() showChange: EventEmitter<String> = new EventEmitter<String>();
 
   constructor(
     private _route: ActivatedRoute,
@@ -59,8 +60,8 @@ export class LoginComponent implements OnInit {
         }
 
         // Success :)
-        // Take them to where they need to go!
-        this.ref ? this._router.navigate([this.ref]) : this._router.navigate(['/']);
+        this.show = false;
+        this.showChange.emit();
 
       })
   }

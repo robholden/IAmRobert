@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 import { Post } from '../models/post';
 
 @Injectable()
-export class postService {
+export class PostService {
 
   constructor(
     private _config: AppConfig,

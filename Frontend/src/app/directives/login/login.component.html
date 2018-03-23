@@ -1,0 +1,23 @@
+<h2>Login</h2>
+
+<form #loginForm="ngForm" (submit)="login()" class="page-form">
+  <div class="form-block mg-bottom">
+    <label for="username" floating-label [class.show]="username !== ''">Username</label>
+    <input id="login-username" type="text" name="username" [(ngModel)]="username" placeholder="USERNAME" required />
+  </div>
+
+  <div class="form-block mg-bottom">
+    <label for="password" floating-label [class.show]="password !== ''">Password</label>
+    <input id="login-password" type="password" name="password" [(ngModel)]="password" placeholder="PASSWORD" required />
+  </div>
+
+  <div class="form-block mg-bottom">
+    <input id="remember" class="sc-checkbox" type="checkbox" name="remember" [(ngModel)]="remember" />
+    <label for="remember">Remember me?</label>
+  </div>        
+
+  <button type="submit" class="button primary" [disabled]="(!loginForm.form.valid) || loading">
+    {{ loading ? 'Logging In' : 'Login' }}
+    <i class="fa fa-spinner fa-spin i-right" *ngIf="loading"></i>
+  </button>    
+</form>

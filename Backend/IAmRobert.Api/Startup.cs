@@ -92,11 +92,13 @@ namespace IAmRobert.Api
 
             // configure DI for db repos
             services.AddScoped<IRepository<AccessLog>, Repository<AccessLog>>();
+            services.AddScoped<IRepository<Post>, Repository<Post>>();
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped<IRepository<UserToken>, Repository<UserToken>>();
 
             // configure DI for application services
             services.AddTransient<IAccessLogService, AccessLogService>();
+            services.AddTransient<IPostService, PostService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserTokenService, UserTokenService>();
 

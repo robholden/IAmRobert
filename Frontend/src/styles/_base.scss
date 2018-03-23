@@ -17,10 +17,16 @@
 body {
   font-family: $font-family;
   font-size: 16px;
+  background: $light-grey;
 }
 
 a, div, input, button, i {
   transition: ease 0.25s;
+}
+
+h1, h2, h3, h4 {
+  color: $orange;
+  font-family: $fancy-font;
 }
 
 .no-animation {
@@ -52,9 +58,17 @@ a {
   border: 1px solid #333;
   color: #333;
   cursor: pointer;
+  background: none;
 
   &:hover {
     border-color: $orange;
     color: $orange;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.75;
+    border-color: $grey;
+    color: $grey;
   }
 }

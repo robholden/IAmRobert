@@ -8,6 +8,6 @@ export class Post {
     public slug: string = '',
     public creationDate: Date = new Date(),
     public modifiedDate: Date = new Date(),
-    public user: User
+    public user: User = null
   ) {}
 }

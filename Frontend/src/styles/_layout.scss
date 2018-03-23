@@ -35,8 +35,6 @@ section {
 
   h1 {
     font-size: 5rem;
-    color: $orange;
-    font-family: $fancy-font;
     text-shadow: 1px 1px #999;
 
     @media (max-width: 768px) {
@@ -124,65 +122,5 @@ section {
       color: $black;
       cursor: default;
     }
-  }
-}
-
-form {
-  &.strict {
-    max-width: 400px;
-  }
-
-  h3 {
-    font-size: 1.5em;
-    margin-bottom: 1em;
-
-    button[type="submit"] {
-      width: auto;
-      font-size: 1rem;
-      padding: 0.5em 1em;
-      margin-top: -7px;
-    }
-  }
-
-  input[type="text"], input[type="password"], input[type="email"], select, textarea {
-    width: 100%;
-    padding: 1em;
-    margin-bottom: 1em;
-    border: 2px solid $grey;
-    font-size: 1em;
-
-    &:focus, &:active {
-      outline: none;
-      border-color: $dark-grey;
-    }
-  }
-
-  textarea {
-    min-height: 250px;
-  }
-
-  button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 0.75em 0.5em;
-    color: $orange;
-    background: $light-white;
-    border: 2px solid $orange;
-    text-align: center;
-    font-size: 1em;
-    cursor: pointer;
-    outline: none;
-
-    &:hover {
-      background: $orange;
-      color: $light-white;
-    }
-
-    &[disabled] {
-      background: $light-white;
-      color: $grey;
-      border-color: $light-grey;
-      cursor: not-allowed;
-    } 
   }
 }

@@ -41,3 +41,12 @@
     <div class="cl"></div>
   </div>
 </header>
+
+<nav id="post-nav" *ngIf="auth.loggedIn">
+  <div class="container">
+    <ul>
+      <li><a routerLink="/blog/post/new">New Post</a></li>
+      <li><a (click)="auth.logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>

@@ -24,11 +24,14 @@ import { ProjectImageAreaSelectorComponent } from './pages/projects/project-imag
 import { SkillsComponent } from './pages/skills/skills.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ProjectPromptBoxesComponent } from './pages/projects/project-prompt-boxes/project-prompt-boxes.component';
-import { LoginComponent } from './pages/login/login.component';
+import { LoginComponent } from './directives/login/login.component';
 import { AppConfig } from './app.config';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import { CommonService } from './services/common.service';
+import { BlogPostsComponent } from './pages/blog/blog-posts/blog-posts.component';
+import { BlogPostViewComponent } from './pages/blog/blog-post-view/blog-post-view.component';
+import { BlogPostEditorComponent } from './pages/blog/blog-post-editor/blog-post-editor.component';
 
 export const routerConfig: Routes = [
   {
@@ -59,9 +62,31 @@ export const routerConfig: Routes = [
 
 
   {
-    path: 'login',
-    component: LoginComponent,
-    data: { title: 'Login' }
+    path: 'blog',
+    component: BlogPostsComponent,
+    data: { title: 'Blog' }
+  },
+  {
+    path: 'blog/:slug',
+    component: BlogPostsComponent,
+    data: { title: 'Post' }
+  },
+  {
+    path: 'blog/post/edit/:slug',
+    component: BlogPostEditorComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'Post Editor' }
+  },
+  {
+    path: 'blog/post/new',
+    component: BlogPostEditorComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'Post Editor' }
+  },
+  {
+    path: 'blog/admin/login',
+    component: BlogPostsComponent,
+    data: { title: 'Blog', goToLogin: true }
   },
 
   {
@@ -88,7 +113,10 @@ export const routerConfig: Routes = [
     ProjectPromptBoxesComponent,
     LoginComponent,
     CookieLawComponent,
-    PopupComponent
+    PopupComponent,
+    BlogPostsComponent,
+    BlogPostViewComponent,
+    BlogPostEditorComponent
   ],
   imports: [
     RouterModule.forRoot(routerConfig),

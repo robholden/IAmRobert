@@ -1,0 +1,42 @@
+<app-nav page="blog"></app-nav>
+
+<app-popup *ngIf="goToLogin" [(show)]="goToLogin" [class.open]="goToLogin">
+  <app-login [(show)]="goToLogin"></app-login>
+</app-popup>
+
+<section class="first">
+  <div class="container">
+    <h1>
+      Posts
+    </h1>
+
+    <div *ngIf="loading">
+      Loading Posts...
+    </div>
+
+    <div *ngIf="!loading">
+      <div *ngIf="!posts">
+        Nothing to show
+      </div>
+
+      <div *ngIf="posts">
+        <div *ngIf="posts.length === 0">
+          Nothing to show
+        </div>
+
+        <div *ngFor="let post of posts">
+          <a routerLink="/projects/prompt-boxes" class="project-card">
+            <img src="/assets/images/blog/blog-default.jpg" />
+            <div>
+              <h3>Prompt Boxes</h3>
+              <p>A Javascript plugin for toasts and prompts.</p>
+            </div>
+            <p>
+              <i class="fa fa-angle-right"></i>
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -11,7 +11,7 @@
 .toast {
   display: inline;
   position: fixed;
-  top: 0.25em;
+  top: 10px;
   left: 0;
   right: 0;
   max-width: 400px;
@@ -25,6 +25,7 @@
   color: $white;
   border-radius: 0;
   text-align: center;
+  font-size: 12px;
 
   z-index: 9999;
 
@@ -34,15 +35,15 @@
   }
 
   &.error {
-    background: $orange;
-    border-bottom: 4px solid $dark-orange;
+    background: $red;
+    border-bottom: 4px solid $dark-red;
   }
   
-    &.info {
-      color: $black;
-      background: $light-grey;
-      border-bottom: 4px solid $grey;
-    }
+  &.info {
+    color: $black;
+    background: $light-grey;
+    border-bottom: 4px solid $grey;
+  }
 
   &.show {
     transform: scale(1);

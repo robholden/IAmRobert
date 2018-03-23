@@ -89,3 +89,25 @@ header {
     }
   }
 }
+
+#post-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1em;
+  background: $grey;
+  z-index: 997;
+  text-align: left;
+
+  ul {
+    li {
+      display: inline-block;
+      margin-right: 1em;
+    }
+  }
+
+  a {
+    color: $black;
+  }
+}
