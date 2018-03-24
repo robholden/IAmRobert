@@ -6,7 +6,7 @@
 
 <section class="first">
   <div class="container">
-    <h1>
+    <h1 class="mg-bottom">
       Posts
     </h1>
 
@@ -15,21 +15,21 @@
     </div>
 
     <div *ngIf="!loading">
-      <div *ngIf="!posts">
+      <div *ngIf="!posts" class="box white">
         Nothing to show
       </div>
 
       <div *ngIf="posts">
-        <div *ngIf="posts.length === 0">
+        <div *ngIf="posts.length === 0" class="box white">
           Nothing to show
         </div>
 
         <div *ngFor="let post of posts">
-          <a routerLink="/projects/prompt-boxes" class="project-card">
+          <a [routerLink]="'/blog/post/edit/' + post.slug" class="project-card">
             <img src="/assets/images/blog/blog-default.jpg" />
             <div>
-              <h3>Prompt Boxes</h3>
-              <p>A Javascript plugin for toasts and prompts.</p>
+              <h3>{{ post.heading }}</h3>
+              <p>{{ post.blurb }}</p>
             </div>
             <p>
               <i class="fa fa-angle-right"></i>

@@ -32,6 +32,7 @@ import { CommonService } from './services/common.service';
 import { BlogPostsComponent } from './pages/blog/blog-posts/blog-posts.component';
 import { BlogPostViewComponent } from './pages/blog/blog-post-view/blog-post-view.component';
 import { BlogPostEditorComponent } from './pages/blog/blog-post-editor/blog-post-editor.component';
+import { MdeditorComponent } from './directives/mdeditor/mdeditor.component';
 
 export const routerConfig: Routes = [
   {
@@ -67,11 +68,6 @@ export const routerConfig: Routes = [
     data: { title: 'Blog' }
   },
   {
-    path: 'blog/:slug',
-    component: BlogPostsComponent,
-    data: { title: 'Post' }
-  },
-  {
     path: 'blog/post/edit/:slug',
     component: BlogPostEditorComponent,
     canActivate: [AuthGuard],
@@ -84,9 +80,14 @@ export const routerConfig: Routes = [
     data: { title: 'Post Editor' }
   },
   {
-    path: 'blog/admin/login',
+    path: 'blog/user/login',
     component: BlogPostsComponent,
     data: { title: 'Blog', goToLogin: true }
+  },
+  {
+    path: 'blog/post/:slug',
+    component: BlogPostsComponent,
+    data: { title: 'Post' }
   },
 
   {
@@ -116,7 +117,8 @@ export const routerConfig: Routes = [
     PopupComponent,
     BlogPostsComponent,
     BlogPostViewComponent,
-    BlogPostEditorComponent
+    BlogPostEditorComponent,
+    MdeditorComponent
   ],
   imports: [
     RouterModule.forRoot(routerConfig),

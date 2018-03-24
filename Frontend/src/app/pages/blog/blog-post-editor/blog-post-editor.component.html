@@ -1,3 +1,39 @@
-<p>
-  blog-post-editor works!
-</p>
+<app-nav page="blog"></app-nav>
+
+<section class="first">
+  <div class="container">
+    <h1>
+      Post Editor
+    </h1>
+
+    <div *ngIf="loading" class="box white">
+      Loading post...
+    </div>
+
+    <form #postForm="ngForm" class="form mg-top" (submit)="save()" *ngIf="!loading">
+      <div class="form-block mg-bottom">
+        <label for="post-heading" floating-label [class.show]="post.heading !== ''">Heading</label>
+        <input id="post-heading" type="text" name="heading" [(ngModel)]="post.heading" placeholder="HEADING" required />
+      </div>
+
+      <div class="form-block mg-bottom">
+        <label for="post-slug" floating-label [class.show]="post.slug !== ''">Slug</label>
+        <input id="post-slug" type="text" name="slug" [(ngModel)]="post.slug" placeholder="SLUG" required />
+      </div>
+
+      <div class="form-block content-it mg-bottom">
+        <app-mdeditor [(model)]="post.body"></app-mdeditor>
+      </div>
+
+      <div class="form-block mg-bottom">
+        <label for="post-blurb" floating-label [class.show]="post.blurb !== ''">Blurb</label>
+        <textarea id="post-blurb" name="blurb" [(ngModel)]="post.blurb" placeholder="BLURB" required></textarea>
+      </div>
+
+      <button type="submit" class="button primary" [disabled]="!postForm.form.valid || saving">
+        {{ saving ? 'Saving' : 'Save' }}
+        <i class="fa fa-spinner fa-spin i-right" *ngIf="saving"></i>
+      </button> 
+    </form>
+  </div>
+</section>

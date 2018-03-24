@@ -60,40 +60,4 @@ app-popup {
     font-size: 3rem;
     margin-bottom: 1rem;
   }
-
-  form {
-    *[floating-label] {
-      display: block;
-      font-size: 10px;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: ease 0.25s;
-      margin-bottom: 5px;
-      text-transform: uppercase;
-      font-weight: bold;
-
-      &.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    input[type="text"], input[type="password"] {
-      display: block;
-      position: relative;
-      width: 100%;
-      padding: 1rem 0.75rem;
-      border: none;
-      border-bottom: 2px solid $light-orange;
-      box-shadow: none;
-      appearance: none;
-      outline: none;
-      background: $white;
-      z-index: 2;
-
-      &:focus {
-        border-color: $orange;
-      }
-    }
-  }
 }

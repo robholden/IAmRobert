@@ -2,17 +2,17 @@
 .fr { float: right; }
 .fl { float: left; }
 
-.mg-none { margin: 0 !important; }
-.mg-top { margin-top: 1em; }
-.mg-right { margin-right: 1em; }
-.mg-bottom { margin-bottom: 1em; }
-.mg-left { margin-left: 1em; }
+.mg-none    { margin: 0 !important; }
+.mg-top     { margin-top: 1rem; }
+.mg-right   { margin-right: 1rem; }
+.mg-bottom  { margin-bottom: 1rem; }
+.mg-left    { margin-left: 1rem; }
 
-.pg-none { padding: 0 !important; }
-.pg-top { padding-top: 1em; }
-.pg-right { padding-right: 1em; }
-.pg-bottom { padding-bottom: 1em; }
-.pg-left { padding-left: 1em; }
+.pg-none    { padding: 0 !important; }
+.pg-top     { padding-top: 1rem; }
+.pg-right   { padding-right: 1rem; }
+.pg-bottom  { padding-bottom: 1rem; }
+.pg-left    { padding-left: 1rem; }
 
 body {
   font-family: $font-family;

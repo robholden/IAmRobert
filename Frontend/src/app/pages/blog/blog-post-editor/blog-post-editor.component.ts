@@ -19,6 +19,7 @@ export class BlogPostEditorComponent implements OnInit {
   loading = true;
   saving = false;
   creating = true;
+  slug = '';
 
   constructor(
     private _route: ActivatedRoute,
@@ -35,15 +36,12 @@ export class BlogPostEditorComponent implements OnInit {
       params => {
 
         // Stop if there's no post provided
-        if (!params.slug) {
-          this.post = new Post();
-          return this.loading = false;
-        }
+        if (!params.slug) return this.load(new Post());
 
         // Call api for given post
         _postService.get(params.slug).subscribe(
           (post: Post) => this.load(post),
-          (error) => this.loading = false
+          (error) => { this.load(new Post()) }
         )
 
       }
@@ -52,30 +50,28 @@ export class BlogPostEditorComponent implements OnInit {
   }
 
   load(post: Post) {
-    console.log(post);
-
     this.post = post;
     this.loading = false;
-    this._title.setTitle(`${ this.config.siteTitle } » ${ this.post.slug }`);
+    this.saving = false;
+    this._title.setTitle(`${ this.config.siteTitle } » ${ this.post.slug || 'New' }`);
 
     if (this.creating) {
-      this._location.go(`/blog/post/edit/${ post.slug }`);
+      this._location.go(`/blog/post/edit/${ this.post.slug }`);
       this.creating = false;
     }
+
+    this.slug = post.slug;
   }
 
   save() {
 
     // Are we updating or creating?
-    var method = this.creating ? this._postService.create(this.post) : this._postService.update(this.post);
+    var method = this.creating ? this._postService.create(this.post) : this._postService.update(this.slug, this.post);
 
     // Both methods have the same outcomes
     this.saving = true;
     method.subscribe(
-      (post) => {
-        this.post = post;
-        this.saving = false;
-      },
+      (post: Post) => this.load(post),
       (error) => {
         this._toast.serverError(error);
         this.saving = false;
@@ -83,7 +79,6 @@ export class BlogPostEditorComponent implements OnInit {
     )
 
   }
-
 
   ngOnInit() {
   }

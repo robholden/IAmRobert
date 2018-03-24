@@ -24,8 +24,8 @@ export class PostService {
     return this._http.get(`${this._config.apiURI}/posts/${slug}`, this._auth.headers()).map(res => res.json());
   }
 
-  update(post: Post) {
-    return this._http.put(`${this._config.apiURI}/posts/${post.slug}`, post, this._auth.headers()).map(res => res.json());
+  update(slug: string, post: Post) {
+    return this._http.put(`${this._config.apiURI}/posts/${slug}`, post, this._auth.headers()).map(res => res.json());
   }
 
   delete(slug: string) {

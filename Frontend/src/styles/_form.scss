@@ -1,61 +1,48 @@
-
-
-.form {
-  &.strict {
-    max-width: 400px;
-  }
-
-  h3 {
-    font-size: 1.5em;
-    margin-bottom: 1em;
-
-    button[type="submit"] {
-      width: auto;
-      font-size: 1rem;
-      padding: 0.5em 1em;
-      margin-top: -7px;
-    }
-  }
-
-  input[type="text"], input[type="password"], input[type="email"], select, textarea {
-    width: 100%;
-    padding: 1em;
-    margin-bottom: 1em;
-    border: 2px solid $grey;
-    font-size: 1em;
-
-    &:focus, &:active {
-      outline: none;
-      border-color: $dark-grey;
-    }
-  }
-
-  textarea {
-    min-height: 250px;
-  }
-
-  button[type="submit"] {
+form {
+  *[floating-label] {
     display: block;
-    width: 100%;
-    padding: 0.75em 0.5em;
-    color: $orange;
-    background: $light-white;
-    border: 2px solid $orange;
-    text-align: center;
-    font-size: 1em;
-    cursor: pointer;
-    outline: none;
+    font-size: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: ease 0.25s;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
 
-    &:hover {
-      background: $orange;
-      color: $light-white;
+    &.show {
+      opacity: 1;
+      transform: translateY(0);
     }
+  }
 
-    &[disabled] {
-      background: $light-white;
-      color: $grey;
-      border-color: $light-grey;
-      cursor: not-allowed;
-    } 
+  input[type="text"], input[type="password"], textarea,
+  .input, .textarea {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 1rem 0.75rem;
+    border: none;
+    border-bottom: 2px solid $light-orange;
+    box-shadow: none;
+    appearance: none;
+    outline: none;
+    background: $white;
+    z-index: 2;
+    font-size: 1rem;
+    color: $black;
+
+    &:focus {
+      border-color: $orange;
+    }
+  }
+
+  button {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  textarea, .textarea {
+    max-height: 250px;
   }
 }

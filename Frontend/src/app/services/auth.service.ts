@@ -122,7 +122,7 @@ export class AuthService {
 
         callback(false);
       },
-      (error) => callback(true, error)
+      (error) => callback(true, 'An API error occurred')
     );
 
   }
