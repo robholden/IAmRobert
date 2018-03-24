@@ -26,7 +26,7 @@ namespace IAmRobert.Api.v1.Controllers
         private readonly ILogger _logger;
         private IMapper _mapper;
         private IPostService _postService;
-        private IPostService _userService;
+        private IUserService _userService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PostsController"/> class.
@@ -40,7 +40,7 @@ namespace IAmRobert.Api.v1.Controllers
         public PostsController(
             IAccessLogService accessLogService,
             IPostService postService,
-            IPostService userService,
+            IUserService userService,
             IMapper mapper,
             IOptions<AppSettings> appSettings,
             ILogger<PostsController> logger)
@@ -63,7 +63,10 @@ namespace IAmRobert.Api.v1.Controllers
             try
             {
                 // Create
-                var _post = _postService.Create(_mapper.Map<Post>(post));
+                var _post = _mapper.Map<Post>(post);
+                _post.User = _userService.GetByUsername(User.Identity.Name);
+                _post = _postService.Create(_post);
+
                 return Ok(Mapper.Map<PostDto>(_post));
             }
             catch (AppException ex)
@@ -115,7 +118,7 @@ namespace IAmRobert.Api.v1.Controllers
             try
             {
                 var post = _postService.GetBySlug(slug);
-                if (post == null) throw new AppException("Cannot find post");
+                if (post == null) return NotFound();
 
                 var postDto = _mapper.Map<PostDto>(post);
                 return Ok(postDto);
@@ -184,12 +187,16 @@ namespace IAmRobert.Api.v1.Controllers
         /// <param name="post">The post.</param>
         /// <returns></returns>
         [HttpPut]
+        [Route("{slug}")]
         public IActionResult Update(string slug, [FromBody]PostDto post)
         {
             try
             {
-                var _post = _postService.GetBySlug(slug);
-                _post = _postService.Update(_post.Id, _mapper.Map<Post>(post));
+                var id = _postService.GetBySlug(slug).Id;
+                var _post = _mapper.Map<Post>(post);
+
+                _post.User = _userService.GetByUsername(User.Identity.Name);
+                _post = _postService.Update(id, _mapper.Map<Post>(post));
 
                 return Ok(Mapper.Map<PostDto>(_post));
             }

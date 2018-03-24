@@ -61,6 +61,6 @@ namespace IAmRobert.Api.v1.Dtos
         /// <value>
         /// The user.
         /// </value>
-        public virtual UserBasicDto User { get; set; }
+        public UserBasicDto User { get; set; }
     }
 }

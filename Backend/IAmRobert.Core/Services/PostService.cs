@@ -92,19 +92,20 @@ namespace IAmRobert.Core.Services
         /// <returns>Post</returns>
         public Post Create(Post post)
         {
+
+            // Validation
+            var error = Validate(post, true);
+            if (!string.IsNullOrWhiteSpace(error)) throw new AppException(error, true);
+
             // Create new object to ensure properties aren't tampered with
             post = new Post()
             {
                 Heading = post.Heading,
                 Blurb = post.Blurb,
                 Body = post.Body,
-                Slug = post.Slug,
-                User = post.User
+                Slug = post.Slug.ToLower(),
+                UserId = post.UserId
             };
-
-            // Validation
-            var error = Validate(post, true);
-            if (!string.IsNullOrWhiteSpace(error)) throw new AppException(error, true);
 
             // Create post
             return _repo.Create(post);
@@ -186,8 +187,7 @@ namespace IAmRobert.Core.Services
         {
             // Get post
             var _post = GetById(id);
-            if (_post == null || _post.Slug != post.Slug)
-                throw new AppException("Post not found");
+            if (_post == null) throw new AppException("Post not found");
 
             // Validate
             var error = Validate(post, post.Slug != _post.Slug);
@@ -198,6 +198,8 @@ namespace IAmRobert.Core.Services
             _post.Blurb = post.Blurb;
             _post.Body = post.Body;
             _post.ModifiedDate = DateTime.Now;
+            _post.Slug = post.Slug.ToLower();
+            _post.UserId = post.UserId;
 
             _repo.Update(_post);
             return _post;
