@@ -1,3 +1,29 @@
-<p>
-  blog-post-view works!
-</p>
+<app-nav page="blog"></app-nav>
+
+<section class="first">
+  <div class="container">
+    
+    <div class="box white pg-large" *ngIf="loading">
+      Loading post...
+    </div>
+
+    <div *ngIf="!loading">
+      <div *ngIf="!post" class="box white pg-large">
+        The post you've request cannot be found.
+      </div>
+
+      <div *ngIf="post">
+        <h1>{{ post.heading }}</h1>
+        <a [routerLink]="'/blog/post/edit/' + post.slug" class="button primary" *ngIf="auth.loggedIn">
+          Edit Post
+        </a>
+        <p>Uploaded By: {{ post.user.name }}</p>
+        <div class="box white content-it pg-large mg-top" [innerHTML]="post.body"></div>
+        <a [routerLink]="'/blog/post/edit/' + post.slug" class="button primary" *ngIf="auth.loggedIn">
+          Edit Post
+        </a>
+      </div>
+    </div>
+       
+  </div>
+</section>

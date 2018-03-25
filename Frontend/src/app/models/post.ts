@@ -6,6 +6,7 @@ export class Post {
     public blurb: string = '',
     public body: string = '',
     public slug: string = '',
+    public featureImageUrl: string = '',
     public creationDate: Date = new Date(),
     public modifiedDate: Date = new Date(),
     public user: User = null

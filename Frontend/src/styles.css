@@ -2408,9 +2408,15 @@ table {
 .pg-left {
   padding-left: 1rem; }
 
+.pg {
+  padding: 1rem; }
+
+.pg-large {
+  padding: 2rem; }
+
 body {
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   background: #EEE; }
 
 a, div, input, button, i {
@@ -2419,6 +2425,9 @@ a, div, input, button, i {
 h1, h2, h3, h4 {
   color: #f66;
   font-family: "Cookie"; }
+
+h3, h4 {
+  font-family: "Montserrat", sans-serif; }
 
 .no-animation a, .no-animation div, .no-animation input, .no-animation button {
   transition: none; }
@@ -2437,19 +2446,28 @@ a {
   margin-top: 0.75em;
   margin-right: 0.5em;
   padding: 0.75em 1em;
-  border-radius: 15px;
-  border: 1px solid #333;
-  color: #333;
+  border-radius: 0;
+  border: 1px solid #555;
+  color: #555;
   cursor: pointer;
   background: none; }
   .button:hover {
-    border-color: #f66;
-    color: #f66; }
+    background: #555;
+    color: #FFF; }
+  .button.danger {
+    color: #da4242;
+    border-color: #da4242; }
+    .button.danger:hover {
+      background: #da4242;
+      color: #FFF; }
   .button[disabled] {
     cursor: not-allowed;
     opacity: 0.75;
     border-color: #BBB;
     color: #BBB; }
+
+main.logged-in {
+  padding-bottom: 50px; }
 
 .container {
   width: 100%;
@@ -2457,7 +2475,7 @@ a {
   margin: auto; }
 
 .first {
-  margin-top: 60px; }
+  margin-top: 53px; }
 
 section {
   display: flex;
@@ -2467,8 +2485,8 @@ section {
   color: #252525;
   background-color: #EEE; }
   section.full {
-    min-height: -webkit-calc(100vh - 60px);
-    min-height: calc(100vh - 60px); }
+    min-height: -webkit-calc(100vh - 53px);
+    min-height: calc(100vh - 53px); }
   section.white {
     background-color: #FFF; }
   section h1 {
@@ -2516,13 +2534,14 @@ section {
       color: #252525; }
       section .info-block h3 i {
         top: -2px;
-        margin-right: 0.25em; }
+        margin-right: 0.25em;
+        font-size: 1rem; }
     section .info-block p {
       line-height: 1.7;
       margin-top: 1em; }
     section .info-block span {
       display: inline-block;
-      font-size: 0.8em;
+      font-size: 1em;
       margin-top: 0.75em;
       margin-right: 0.5em;
       padding: 0.75em 0.75em 0.65em;
@@ -2531,21 +2550,28 @@ section {
       color: #252525;
       cursor: default; }
 
+form .label {
+  display: block;
+  margin-bottom: 10px; }
+
 form *[floating-label] {
   display: block;
-  font-size: 10px;
   opacity: 0;
   transform: translateY(10px);
   transition: ease 0.25s;
+  font-size: 14px;
+  margin-top: -14px;
   margin-bottom: 5px;
   text-transform: uppercase;
   font-weight: bold; }
   form *[floating-label].show {
     opacity: 1;
-    transform: translateY(0); }
+    transform: translateY(0);
+    margin-top: 0;
+    padding-top: 1rem; }
 
 form input[type="text"], form input[type="password"], form textarea,
-form .input, form .textarea {
+form .input, form .textarea, form .CodeMirror {
   display: block;
   position: relative;
   width: 100%;
@@ -2558,9 +2584,11 @@ form .input, form .textarea {
   background: #F9F9F9;
   z-index: 2;
   font-size: 1rem;
-  color: #252525; }
+  color: #252525;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 0; }
   form input[type="text"]:focus, form input[type="password"]:focus, form textarea:focus,
-  form .input:focus, form .textarea:focus {
+  form .input:focus, form .textarea:focus, form .CodeMirror:focus {
     border-color: #f66; }
 
 form button {
@@ -2570,6 +2598,29 @@ form button {
 
 form textarea, form .textarea {
   max-height: 250px; }
+
+.content-it .editor-toolbar.fullscreen, .content-it .editor-preview-side, .content-it .CodeMirror-fullscreen {
+  z-index: 9999999; }
+
+.content-it .editor-preview-side {
+  border: none;
+  background: #FFF; }
+
+.content-it .editor-toolbar, .content-it .editor-toolbar.fullscreen {
+  border: none;
+  background: #ffb1b1; }
+  .content-it .editor-toolbar:before, .content-it .editor-toolbar:after, .content-it .editor-toolbar.fullscreen:before, .content-it .editor-toolbar.fullscreen:after {
+    background: transparent; }
+  .content-it .editor-toolbar a, .content-it .editor-toolbar.fullscreen a {
+    border: none; }
+    .content-it .editor-toolbar a.active, .content-it .editor-toolbar.fullscreen a.active {
+      margin-right: 4px;
+      margin-left: 4px; }
+  .content-it .editor-toolbar i.separator, .content-it .editor-toolbar.fullscreen i.separator {
+    border: none;
+    background: #f66;
+    width: 5px;
+    height: 5px; }
 
 header {
   position: fixed;
@@ -2588,7 +2639,8 @@ header {
     opacity: 0;
     z-index: -1;
     font-size: 1.5em;
-    text-shadow: -1px 0 #000; }
+    text-shadow: -1px 0 #000;
+    font-family: "Montserrat", sans-serif; }
     header h1 span:first-child {
       color: #4d9ac9; }
     header h1 span:last-child {
@@ -2600,7 +2652,7 @@ header {
     margin: auto; }
     header nav ul li {
       display: inline-block;
-      padding: 0.25em 0.75em; }
+      padding: 0.25em 0.5em; }
       header nav ul li a {
         color: #F9F9F9; }
         header nav ul li a i {
@@ -2923,7 +2975,7 @@ header {
 #cctv-holder {
   position: fixed;
   display: block;
-  top: 60px;
+  top: 53px;
   right: 10px;
   height: 105px;
   width: 160px;
@@ -3180,7 +3232,7 @@ header {
 .toast {
   display: inline;
   position: fixed;
-  top: 10px;
+  top: 5px;
   left: 0;
   right: 0;
   max-width: 400px;
@@ -3334,10 +3386,103 @@ app-popup {
     font-size: 3rem;
     margin-bottom: 1rem; }
 
-.box {
-  padding: 2rem; }
-  .box.white {
-    background: #FFF; }
+.box.white {
+  background: #FFF; }
+
+.media-centre .media-file {
+  display: inline-block;
+  margin-right: 1em; }
+  .media-centre .media-file:hover a {
+    display: block; }
+  .media-centre .media-file img {
+    border-radius: 5px; }
+  .media-centre .media-file a {
+    display: none;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 8px;
+    color: #FFF;
+    background: #da4242;
+    border-radius: 50%; }
+
+.content-it {
+  color: #252525 !important; }
+  .content-it img {
+    display: block;
+    max-width: 100%; }
+  .content-it h1, .content-it h2, .content-it h3, .content-it h4 {
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #BBB;
+    font-weight: inherit;
+    color: #252525;
+    font-weight: bold;
+    text-shadow: none;
+    font-family: "Montserrat", sans-serif; }
+    .content-it h1:first-child, .content-it h2:first-child, .content-it h3:first-child, .content-it h4:first-child {
+      margin-top: 0; }
+  .content-it h1 {
+    font-size: 2.25rem; }
+  .content-it h2 {
+    font-size: 2rem; }
+  .content-it h3 {
+    font-size: 1.75rem; }
+  .content-it h4 {
+    font-size: 1.5rem; }
+  .content-it h5 {
+    font-size: 1.25rem; }
+  .content-it h6 {
+    font-size: 1rem; }
+  .content-it small {
+    font-size: .707em; }
+  .content-it blockquote {
+    border-left: 3px solid #f66;
+    padding: 0.5em 1em;
+    margin: 1em 0; }
+    .content-it blockquote p {
+      font-size: 1.25rem;
+      font-style: italic;
+      margin: 0 auto 0.25rem; }
+  .content-it ul {
+    list-style-type: circle; }
+  .content-it ol {
+    list-style-type: decimal; }
+  .content-it ul, .content-it ol {
+    margin-bottom: 1rem; }
+    .content-it ul li, .content-it ol li {
+      margin-bottom: 0.5rem;
+      margin-left: 2rem; }
+  .content-it p {
+    height: auto;
+    line-height: 1.25;
+    margin: 0.5rem 0; }
+  .content-it pre,
+  .content-it code {
+    line-height: 1.1;
+    font-family: Menlo, Monaco, "Courier New", monospace; }
+  .content-it pre {
+    background-color: #fafafa;
+    font-size: .8rem;
+    padding: 1.1rem; }
+  .content-it a,
+  .content-it a:visited {
+    color: #f66; }
+  .content-it a:hover,
+  .content-it a:focus,
+  .content-it a:active {
+    color: #F11; }
+  .content-it table {
+    text-align: left; }
+    .content-it table th {
+      color: #FFF;
+      background: #f66;
+      font-weight: bold;
+      padding: 0.75rem; }
+    .content-it table tr td {
+      padding: 0.5rem 0.75rem; }
+    .content-it table tr:nth-child(even) td {
+      background: #EEE; }
 
 .CodeMirror {
   color: #000; }

@@ -1,7 +1,146 @@
 .box {
-  padding: 2rem;
-
   &.white {
     background: $light-white;
+  }
+}
+
+.media-centre {
+  .media-file {
+    display: inline-block;
+    margin-right: 1em;
+
+    &:hover a { display: block; }
+
+    img {
+      border-radius: 5px;
+    }
+
+    a {
+      display: none;
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      padding: 5px 8px;
+      color: $light-white;
+      background: $red;
+      border-radius: 50%;
+    }
+  }
+}
+
+.content-it {
+  color: $black !important;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  h1, h2, h3, h4 {
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid $grey;
+    font-weight: inherit;    
+    color: $black;
+    font-weight: bold;
+    text-shadow: none;
+    font-family: $font-family;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  
+  h1 { font-size: 2.25rem; } 
+  h2 { font-size: 2rem; }  
+  h3 { font-size: 1.75rem; }  
+  h4 { font-size: 1.5rem; }  
+  h5 { font-size: 1.25rem; }  
+  h6 { font-size: 1rem; }  
+
+  small { font-size: .707em; }
+  
+  blockquote {
+    border-left: 3px solid $orange;
+    padding: 0.5em 1em;
+    margin: 1em 0;
+
+    p {
+      font-size: 1.25rem;
+      font-style: italic;
+      margin: 0 auto 0.25rem;
+    }
+  }
+
+  ul {
+    list-style-type: circle;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+  
+  ul, ol {
+    margin-bottom: 1rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      margin-left: 2rem;
+    }
+  }
+
+  p {
+    height: auto;
+    line-height: 1.25;
+    margin: 0.5rem 0;
+  }
+  
+  pre,
+  code {
+    line-height: 1.1;
+    font-family: Menlo, Monaco, "Courier New", monospace;
+  }
+  
+  pre {
+    background-color: #fafafa;
+    font-size: .8rem;
+    padding: 1.1rem;
+  }
+  
+  a,
+  a:visited {
+    color: $orange;
+  }
+  
+  a:hover,
+  a:focus,
+  a:active {
+    color: $dark-orange;
+  }
+
+  table {
+    text-align: left;
+
+    th, td {
+    }
+
+    th {
+      color: $light-white;
+      background: $orange;
+      font-weight: bold;
+      padding: 0.75rem;
+    }
+
+    tr {
+      td {
+        padding: 0.5rem 0.75rem;
+      }
+
+      &:nth-child(even) {
+        td {
+          background: $light-grey;
+        }
+      }
+    }
   }
 }

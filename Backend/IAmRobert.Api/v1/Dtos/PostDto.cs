@@ -32,6 +32,14 @@ namespace IAmRobert.Api.v1.Dtos
         public DateTime CreationDate { get; set; } = DateTime.Now;
 
         /// <summary>
+        /// Gets or sets the feature image URL.
+        /// </summary>
+        /// <value>
+        /// The feature image URL.
+        /// </value>
+        public string FeatureImageUrl { get; set; }
+
+        /// <summary>
         /// Gets or sets the heading.
         /// </summary>
         /// <value>

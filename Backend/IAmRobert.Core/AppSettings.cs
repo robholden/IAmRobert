@@ -28,6 +28,14 @@
         /// The client URL.
         /// </value>
         public string ClientUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the file path.
+        /// </summary>
+        /// <value>
+        /// The file path.
+        /// </value>
+        public string FilePath { get; set; }
     }
 
     /// <summary>

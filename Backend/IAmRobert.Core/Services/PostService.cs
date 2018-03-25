@@ -104,7 +104,8 @@ namespace IAmRobert.Core.Services
                 Blurb = post.Blurb,
                 Body = post.Body,
                 Slug = post.Slug.ToLower(),
-                UserId = post.UserId
+                FeatureImageUrl = post.FeatureImageUrl,
+                User = post.User
             };
 
             // Create post
@@ -199,7 +200,8 @@ namespace IAmRobert.Core.Services
             _post.Body = post.Body;
             _post.ModifiedDate = DateTime.Now;
             _post.Slug = post.Slug.ToLower();
-            _post.UserId = post.UserId;
+            _post.FeatureImageUrl = post.FeatureImageUrl;
+            _post.User = post.User;
 
             _repo.Update(_post);
             return _post;

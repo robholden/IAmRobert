@@ -1,10 +1,16 @@
 form {
+  .label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
   *[floating-label] {
     display: block;
-    font-size: 10px;
     opacity: 0;
     transform: translateY(10px);
     transition: ease 0.25s;
+    font-size: 14px;
+    margin-top: -14px;
     margin-bottom: 5px;
     text-transform: uppercase;
     font-weight: bold;
@@ -12,11 +18,13 @@ form {
     &.show {
       opacity: 1;
       transform: translateY(0);
+      margin-top: 0;
+      padding-top: 1rem;
     }
   }
 
   input[type="text"], input[type="password"], textarea,
-  .input, .textarea {
+  .input, .textarea, .CodeMirror {
     display: block;
     position: relative;
     width: 100%;
@@ -30,6 +38,8 @@ form {
     z-index: 2;
     font-size: 1rem;
     color: $black;
+    font-family: $font-family;
+    border-radius: 0;
 
     &:focus {
       border-color: $orange;
@@ -44,5 +54,43 @@ form {
 
   textarea, .textarea {
     max-height: 250px;
+  }
+}
+
+.content-it {  
+  .editor-toolbar.fullscreen, .editor-preview-side, .CodeMirror-fullscreen {
+    z-index: 9999999;
+  }
+
+  .editor-preview-side {
+    border: none;
+    background: $light-white;
+  }
+
+  .editor-toolbar, .editor-toolbar.fullscreen {
+    border: none;
+    background: $light-orange;
+
+    &:before, &:after {
+      background: transparent;
+    }
+    
+    a {
+      border: none;
+
+      &.active {
+        margin: {
+          right: 4px;
+          left: 4px;
+        }
+      }
+    }
+
+    i.separator {
+      border: none;
+      background: $orange;
+      width: 5px;
+      height: 5px;
+    }
   }
 }

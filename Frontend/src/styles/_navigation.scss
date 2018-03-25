@@ -22,6 +22,7 @@ header {
 
     font-size: 1.5em;
     text-shadow: -1px 0 #000;
+    font-family: $font-family;
 
     span {
       &:first-child { color: $blue; }
@@ -38,7 +39,7 @@ header {
     ul {
       li {
         display: inline-block;
-        padding: 0.25em 0.75em;
+        padding: 0.25em 0.5em;
         
         a {
           color: $white;

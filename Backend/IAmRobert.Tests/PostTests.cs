@@ -23,7 +23,8 @@ namespace IAmRobert.Tests
                 Heading = "Test Heading",
                 Blurb = "Test Blurb",
                 Body = "Test Body",
-                Slug = "Test"
+                Slug = "Test",
+                UserId = 1
             });
 
             Assert.NotNull(post);
@@ -48,7 +49,7 @@ namespace IAmRobert.Tests
         {
             var post = UpdateOrCreatePost();
             var posts = _postService.Search(
-                new System.Func<Post, bool>(x => !x.Deleted),
+                new System.Func<Post, bool>(x => x.Id > 0),
                 new System.Func<Post, System.DateTime>(x => x.CreationDate),
                 "desc",
                 0

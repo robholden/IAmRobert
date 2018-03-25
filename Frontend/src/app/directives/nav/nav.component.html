@@ -9,30 +9,37 @@
     <nav>
       <ul>
         <li>
-          <a [routerLink]="routeRedirect ? '/' : null" (click)="goTo('home')">
+          <a [routerLink]="routeRedirect ? '/' : null" [class.active]="page === 'home'" (click)="goTo('home')">
             <i class="fa fa-heart"></i> 
             Home
           </a>
         </li>
 
         <li>
-          <a [routerLink]="routeRedirect ? '/skills' : null" (click)="goTo('skills')">
+          <a [routerLink]="routeRedirect ? '/skills' : null" [class.active]="page === 'skills'" (click)="goTo('skills')">
             <i class="fa fa-trophy"></i> 
             Skills
           </a>
         </li>
         
         <li>
-          <a [routerLink]="routeRedirect ? '/projects' : null" (click)="goTo('projects')">
+          <a [routerLink]="routeRedirect ? '/projects' : null" [class.active]="page === 'projects'" (click)="goTo('projects')">
             <i class="fa fa-folder"></i> 
             Projects
           </a>
         </li>
 
         <li>
-          <a [routerLink]="routeRedirect ? '/about' : null" (click)="goTo('about')">
+          <a [routerLink]="routeRedirect ? '/about' : null" [class.active]="page === 'about'" (click)="goTo('about')">
             <i class="fa fa-coffee"></i> 
             About
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="/blog" [class.active]="page === 'blog'">
+            <i class="fa fa-comment"></i> 
+            Blog
           </a>
         </li>
       </ul>
@@ -42,11 +49,4 @@
   </div>
 </header>
 
-<nav id="post-nav" *ngIf="auth.loggedIn">
-  <div class="container">
-    <ul>
-      <li><a routerLink="/blog/post/new">New Post</a></li>
-      <li><a (click)="auth.logout()">Logout</a></li>
-    </ul>
-  </div>
-</nav>
+<app-cctv class="no-animation" *ngIf="page !== 'blog'"></app-cctv>

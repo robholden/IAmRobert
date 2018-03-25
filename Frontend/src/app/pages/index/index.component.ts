@@ -24,7 +24,7 @@ export class IndexComponent implements OnInit {
   ) {
     this._route.data
       .subscribe(data => {
-        this.page = data.title ? data.title : 'Home';
+        this.page = data.title ? data.title.toLowerCase() : 'home';
         this._title.setTitle(`Robert Holden » ${this.page}`);
       });
   }

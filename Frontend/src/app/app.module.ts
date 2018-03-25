@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppComponent } from './app.component';
 
@@ -33,6 +34,7 @@ import { BlogPostsComponent } from './pages/blog/blog-posts/blog-posts.component
 import { BlogPostViewComponent } from './pages/blog/blog-post-view/blog-post-view.component';
 import { BlogPostEditorComponent } from './pages/blog/blog-post-editor/blog-post-editor.component';
 import { MdeditorComponent } from './directives/mdeditor/mdeditor.component';
+import { MediaComponent } from './directives/media/media.component';
 
 export const routerConfig: Routes = [
   {
@@ -86,7 +88,7 @@ export const routerConfig: Routes = [
   },
   {
     path: 'blog/post/:slug',
-    component: BlogPostsComponent,
+    component: BlogPostViewComponent,
     data: { title: 'Post' }
   },
 
@@ -118,14 +120,16 @@ export const routerConfig: Routes = [
     BlogPostsComponent,
     BlogPostViewComponent,
     BlogPostEditorComponent,
-    MdeditorComponent
+    MdeditorComponent,
+    MediaComponent
   ],
   imports: [
     RouterModule.forRoot(routerConfig),
     BrowserModule,
     FormsModule,
     HttpModule,
-    SlideshowModule
+    SlideshowModule,
+    ClipboardModule
   ],
   providers: [Title, AuthGuard, AppConfig, CookieService, AuthService, CommonService],
   bootstrap: [AppComponent]

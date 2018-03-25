@@ -36,12 +36,13 @@ namespace IAmRobert.Data.Models
         public DateTime CreationDate { get; set; } = DateTime.Now;
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Post"/> is deleted.
+        /// Gets or sets the feature image URL.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if deleted; otherwise, <c>false</c>.
+        /// The feature image URL.
         /// </value>
-        public bool Deleted { get; set; } = false;
+        [MaxLength(500)]
+        public string FeatureImageUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the heading.

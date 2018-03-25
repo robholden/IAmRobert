@@ -1,7 +1,6 @@
 import { Component, OnInit, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   moduleId: module.id,
@@ -21,8 +20,7 @@ export class NavComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _location: Location,
-    public auth: AuthService
+    private _location: Location
   ) { }
 
   goTo(page: string): void {

@@ -17,6 +17,7 @@ import { ToastService } from '../../../services/toast.service';
 export class BlogPostEditorComponent implements OnInit {
   post: Post;
   loading = true;
+  deleting = false;
   saving = false;
   creating = true;
   slug = '';
@@ -40,7 +41,10 @@ export class BlogPostEditorComponent implements OnInit {
 
         // Call api for given post
         _postService.get(params.slug).subscribe(
-          (post: Post) => this.load(post),
+          (post: Post) => {
+            this.load(post);
+            this.creating = false;
+          },
           (error) => { this.load(new Post()) }
         )
 
@@ -53,11 +57,11 @@ export class BlogPostEditorComponent implements OnInit {
     this.post = post;
     this.loading = false;
     this.saving = false;
+    
     this._title.setTitle(`${ this.config.siteTitle } » ${ this.post.slug || 'New' }`);
 
     if (this.creating) {
-      this._location.go(`/blog/post/edit/${ this.post.slug }`);
-      this.creating = false;
+      this._location.go(`/blog/post/new`);
     }
 
     this.slug = post.slug;
@@ -71,13 +75,48 @@ export class BlogPostEditorComponent implements OnInit {
     // Both methods have the same outcomes
     this.saving = true;
     method.subscribe(
-      (post: Post) => this.load(post),
+      (post: Post) => {
+        this._toast.success('Post have been saved successfully!');
+        this.load(post);
+
+        if (this.creating) {
+          this._location.go(`/blog/post/edit/${ post.slug }`);
+          this.creating = false;
+        }
+      },
       (error) => {
         this._toast.serverError(error);
         this.saving = false;
       }
     )
 
+  }
+
+
+  delete() {
+    this.deleting = true;
+
+    this._toast.confirm(
+      (ok) => {
+        if (!ok) return this.deleting = false;
+
+        this._postService.delete(this.post.slug).subscribe(
+          (ok) => {
+            this._toast.success('Post has been deleted');
+            this.creating = true;
+            this.load(new Post());
+            this.deleting = false;
+          },
+          (error) => {
+            this._toast.serverError(error);
+            this.deleting = false;
+          }
+        );
+      },
+      'Are you sure you want to delete this post?',
+      'Delete',
+      'Cancel'
+    )
   }
 
   ngOnInit() {

@@ -1,3 +1,13 @@
-<router-outlet></router-outlet> 
 
-<app-cctv class="no-animation"></app-cctv>
+<main [class.logged-in]="auth.loggedIn">
+  <router-outlet></router-outlet> 
+</main>
+
+<nav id="post-nav" *ngIf="auth.loggedIn">
+  <div class="container">
+    <ul>
+      <li><a routerLink="/blog/post/new">New Post</a></li>
+      <li><a (click)="auth.logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>

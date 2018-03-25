@@ -1,5 +1,5 @@
-using IAmRobert.Data.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace IAmRobert.Data.Models
@@ -68,6 +68,14 @@ namespace IAmRobert.Data.Models
         /// </value>
         [Required]
         public byte[] PasswordSalt { get; set; }
+
+        /// <summary>
+        /// Gets or sets the posts.
+        /// </summary>
+        /// <value>
+        /// The posts.
+        /// </value>
+        public virtual ICollection<Post> Posts { get; set; }
 
         /// <summary>
         /// Gets or sets the username.
