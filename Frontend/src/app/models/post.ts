@@ -7,6 +7,7 @@ export class Post {
     public body: string = '',
     public slug: string = '',
     public featureImageUrl: string = '',
+    public isDraft: boolean = true,
     public creationDate: Date = new Date(),
     public modifiedDate: Date = new Date(),
     public user: User = null

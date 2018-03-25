@@ -105,6 +105,7 @@ namespace IAmRobert.Core.Services
                 Body = post.Body,
                 Slug = post.Slug.ToLower(),
                 FeatureImageUrl = post.FeatureImageUrl,
+                IsDraft = post.IsDraft,
                 User = post.User
             };
 
@@ -201,7 +202,7 @@ namespace IAmRobert.Core.Services
             _post.ModifiedDate = DateTime.Now;
             _post.Slug = post.Slug.ToLower();
             _post.FeatureImageUrl = post.FeatureImageUrl;
-            _post.User = post.User;
+            _post.IsDraft = post.IsDraft;
 
             _repo.Update(_post);
             return _post;

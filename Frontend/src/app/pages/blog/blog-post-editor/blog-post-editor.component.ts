@@ -42,8 +42,8 @@ export class BlogPostEditorComponent implements OnInit {
         // Call api for given post
         _postService.get(params.slug).subscribe(
           (post: Post) => {
-            this.load(post);
             this.creating = false;
+            this.load(post);
           },
           (error) => { this.load(new Post()) }
         )

@@ -103,7 +103,7 @@ namespace IAmRobert.Api
             services.AddTransient<IUserTokenService, UserTokenService>();
 
             // If Mac use in memory
-            if (OperatingSystem.IsMacOS())
+            if (!OperatingSystem.IsWindows() || true)
             {
                 services.AddDbContext<DataContext>(x => x.UseLazyLoadingProxies().UseInMemoryDatabase("IAmRobert"));
             }

@@ -150,7 +150,13 @@ namespace IAmRobert.Api.v1.Controllers
             try
             {
                 // Create where clause
-                Func<Post, bool> where = new Func<Post, bool>(x => x.Heading.ToLower().Contains((value ?? "").ToLower()));
+                Func<Post, bool> where = new Func<Post, bool>(x => !x.IsDraft && x.Heading.ToLower().Contains((value ?? "").ToLower()));
+
+                // Are we logged in?
+                if (User.Identity.IsAuthenticated)
+                {
+                    where = new Func<Post, bool>(x => x.Heading.ToLower().Contains((value ?? "").ToLower()));
+                }
 
                 // Return in given order
                 Func<Post, DateTime> order = null;

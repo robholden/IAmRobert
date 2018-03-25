@@ -46,6 +46,11 @@
         <textarea id="post-blurb" name="blurb" [(ngModel)]="post.blurb" placeholder="Blurb" rows="4" required></textarea>
       </div>
 
+      <div class="form-block mg-bottom">
+        <input id="draft" class="custom-checkbox" type="checkbox" name="draft" [(ngModel)]="post.isDraft" />
+        <label for="draft">Draft</label>
+      </div>
+
       <div class="form-block content-it mg-bottom">
         <label floating-label class="show">Body</label>
         <app-mdeditor [(model)]="post.body"></app-mdeditor>

@@ -17,8 +17,14 @@
         <a [routerLink]="'/blog/post/edit/' + post.slug" class="button primary" *ngIf="auth.loggedIn">
           Edit Post
         </a>
-        <p>Uploaded By: {{ post.user.name }}</p>
+
+        <div class="tags mg-top">
+          <span>Published by {{ post.user.name }}</span>
+          <span>Published on {{ post.creationDate | date: 'dd/MM/yyyy' }}</span>
+        </div>
+
         <div class="box white content-it pg-large mg-top" [innerHTML]="post.body"></div>
+        
         <a [routerLink]="'/blog/post/edit/' + post.slug" class="button primary" *ngIf="auth.loggedIn">
           Edit Post
         </a>
