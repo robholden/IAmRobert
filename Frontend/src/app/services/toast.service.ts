@@ -9,6 +9,10 @@ export class ToastService {
     this.pb = new PromptBoxes({ max: 5, promptAsAbsolute: true });
   }
 
+  alert(callback: any, msg: string, ok: string = 'Close'): void {
+    this.pb.alert(callback, msg, ok);
+  }
+
   confirm(callback: any, msg: string = 'Are you sure?', yes: string = 'Yes', no: string = 'Cancel') {
     this.pb.confirm(callback, msg, yes, no);
   }
@@ -30,13 +34,17 @@ export class ToastService {
   }
 
   serverError(err: any) {
-    try {
-      if (err.status > 0) {
+    try
+    {
+      if (err.status > 0)
+      {
         this.pb.error(err._body || 'An API error occurred');
-      } else {
+      } else
+      {
         this.pb.error('An API error occurred');
       }
-    } catch (ex) {
+    } catch (ex)
+    {
       this.pb.error('An API error occurred');
     }
   }

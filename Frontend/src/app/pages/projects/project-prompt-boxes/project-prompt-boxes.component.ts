@@ -27,6 +27,14 @@ export class ProjectPromptBoxesComponent implements OnInit {
     this.pb.info('This is an example info toast');
   }
 
+  alert() {
+    this.pb.alert(
+      (outcome) => { alert('You have: ' + (outcome ? 'confirmed' : 'cancelled')) }, // Callback
+      'This is an example alert', // Label text
+      'Ok',                        // Confirm text
+    );
+  }
+
   confirm() {
     this.pb.confirm(
       (outcome) => { alert('You have: ' + (outcome ? 'confirmed' : 'cancelled')) }, // Callback

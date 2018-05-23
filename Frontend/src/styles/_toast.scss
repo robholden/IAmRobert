@@ -11,7 +11,7 @@
 .toast {
   display: inline;
   position: fixed;
-  top: 5px;
+  top: 0.25em;
   left: 0;
   right: 0;
   max-width: 400px;
@@ -25,7 +25,6 @@
   color: $white;
   border-radius: 0;
   text-align: center;
-  font-size: 12px;
 
   z-index: 9999;
 
@@ -39,11 +38,11 @@
     border-bottom: 4px solid $dark-red;
   }
   
-  &.info {
-    color: $black;
-    background: $light-grey;
-    border-bottom: 4px solid $grey;
-  }
+    &.info {
+      color: $black;
+      background: $light-grey;
+      border-bottom: 4px solid $grey;
+    }
 
   &.show {
     transform: scale(1);
@@ -70,9 +69,9 @@
 }
 
 #sc-confirm {
-  display: inline;
+  display: inline-block;
   position: fixed;
-  top: 35%;
+  top: 40vh;
   left: 0;
   right: 0;
   max-width: 375px;
@@ -92,10 +91,10 @@
   z-index: 9999;
 
   &.absolute {
-    margin-top: 25%;
-  }
+    margin-top: 40vh;
+  }  
 
-  p {
+  .sc-message {
     font-size: 1.05em;
     margin: 0 0 0.75em;
   }
@@ -131,12 +130,13 @@
     font-size: 0.9em;
 
     &:first-of-type {
-      color: $orange;
+      background: $light-grey;
+      color: $red;
       border: none;
-      border-bottom: 2px solid $orange;
+      border-bottom: 2px solid $red;
 
       &:hover, &.active {
-        background: $orange;
+        background: $red;
         color: $white;
       }
     }
@@ -156,6 +156,18 @@
         border-color: $grey;
         color: $dark-grey;
         cursor: not-allowed;
+      }
+    }
+    
+    &:only-of-type {
+      float: none;
+      background: $light-grey;
+      color: $black;
+      border: none;
+
+      &:hover {
+        background: $grey;
+        color: $black;
       }
     }
   }
