@@ -11,8 +11,7 @@ import { ToastService } from '../../../services/toast.service';
 @Component({
   selector: 'app-blog-post-editor',
   templateUrl: './blog-post-editor.component.html',
-  styleUrls: ['./blog-post-editor.component.css'],
-  providers: [PostService, ToastService]
+  styleUrls: ['./blog-post-editor.component.css']
 })
 export class BlogPostEditorComponent implements OnInit {
   post: Post;
@@ -30,7 +29,7 @@ export class BlogPostEditorComponent implements OnInit {
     private _location: Location,
     public config: AppConfig,
     public auth: AuthService
-  ) { 
+  ) {
 
     // Set page title
     this._route.params.subscribe(
@@ -57,10 +56,11 @@ export class BlogPostEditorComponent implements OnInit {
     this.post = post;
     this.loading = false;
     this.saving = false;
-    
-    this._title.setTitle(`${ this.config.siteTitle } » ${ this.post.slug || 'New' }`);
 
-    if (this.creating) {
+    this._title.setTitle(`${this.config.siteTitle} » ${this.post.slug || 'New'}`);
+
+    if (this.creating)
+    {
       this._location.go(`/blog/post/new`);
     }
 
@@ -79,8 +79,9 @@ export class BlogPostEditorComponent implements OnInit {
         this._toast.success('Post have been saved successfully!');
         this.load(post);
 
-        if (this.creating) {
-          this._location.go(`/blog/post/edit/${ post.slug }`);
+        if (this.creating)
+        {
+          this._location.go(`/blog/post/edit/${post.slug}`);
           this.creating = false;
         }
       },

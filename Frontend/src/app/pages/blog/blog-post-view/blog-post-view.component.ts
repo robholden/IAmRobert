@@ -13,8 +13,7 @@ import * as marked from 'marked';
 @Component({
   selector: 'app-blog-post-view',
   templateUrl: './blog-post-view.component.html',
-  styleUrls: ['./blog-post-view.component.css'],
-  providers: [PostService, ToastService]
+  styleUrls: ['./blog-post-view.component.css']
 })
 export class BlogPostViewComponent implements OnInit {
   post: Post;
@@ -26,7 +25,7 @@ export class BlogPostViewComponent implements OnInit {
     private _postService: PostService,
     public config: AppConfig,
     public auth: AuthService
-  ) { 
+  ) {
 
     // Set page title
     this._route.params.subscribe(
@@ -39,9 +38,9 @@ export class BlogPostViewComponent implements OnInit {
         _postService.get(params.slug).subscribe(
           (post: Post) => {
             this.post = post;
-            this._title.setTitle(`${ this.config.siteTitle } » ${ this.post.slug }`);
-            this.loading = false;     
-            
+            this._title.setTitle(`${this.config.siteTitle} » ${this.post.slug}`);
+            this.loading = false;
+
             this.post.body = marked(this.post.body || '');
           },
           (error) => this.loading = false

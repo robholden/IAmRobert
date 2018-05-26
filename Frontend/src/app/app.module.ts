@@ -1,14 +1,18 @@
-import { BrowserModule, Title } from '@angular/platform-browser';
-import { NgModule, enableProdMode } from '@angular/core';
+import { BrowserModule, Title, Meta } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { SlideshowModule } from 'ng-simple-slideshow';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieModule } from 'ngx-cookie';
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppComponent } from './app.component';
+
+import { AuthGuard } from './guards/auth.guard';
+import { AuthInterceptor } from './guards/auth.interceptor';
 
 import { NavComponent } from './directives/nav/nav.component';
 import { CCTVComponent } from './directives/cctv/cctv.component';
@@ -27,7 +31,6 @@ import { AboutComponent } from './pages/about/about.component';
 import { ProjectPromptBoxesComponent } from './pages/projects/project-prompt-boxes/project-prompt-boxes.component';
 import { LoginComponent } from './directives/login/login.component';
 import { AppConfig } from './app.config';
-import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import { CommonService } from './services/common.service';
 import { BlogPostsComponent } from './pages/blog/blog-posts/blog-posts.component';
@@ -124,14 +127,20 @@ export const routerConfig: Routes = [
     MediaComponent
   ],
   imports: [
-    RouterModule.forRoot(routerConfig),
     BrowserModule,
     FormsModule,
-    HttpModule,
+    CommonModule,
+    HttpClientModule,
     SlideshowModule,
-    ClipboardModule
+    ClipboardModule,
+    RouterModule.forRoot(routerConfig),
+    CookieModule.forRoot()
   ],
-  providers: [Title, AuthGuard, AppConfig, CookieService, AuthService, CommonService],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    Title,
+    Meta
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

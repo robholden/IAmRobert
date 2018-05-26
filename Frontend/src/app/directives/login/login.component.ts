@@ -3,14 +3,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AppConfig } from '../../app.config';
 import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
 import { ToastService } from '../../services/toast.service';
 import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  providers: [UserService, ToastService]
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
   ref: string = '';
@@ -27,7 +25,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _user: UserService,
     private _toast: ToastService,
     public auth: AuthService,
     public common: CommonService
@@ -35,6 +32,9 @@ export class LoginComponent implements OnInit {
 
     // Store referrer url
     this._route.queryParams.subscribe(params => this.ref = (params['ref'] || '').replace(/%20/g, ' '));
+
+    // Are they already logged in?
+    if (this.auth.loggedIn) this._router.navigate(['/']);
 
   }
 
@@ -46,24 +46,14 @@ export class LoginComponent implements OnInit {
       this.username,
       this.password,
       this.remember,
-      (error: boolean, message: string) => {
-
-        // Api call ended
+      () => this.ref ? this._router.navigate([this.ref]) : this._router.navigate(['/']),
+      (error: string) => {
         this.loading = false;
-
-        // Uh oh
-        if (error) {
-          this.password = '';
-          this._toast.error(message);
-          document.getElementById('login-password').focus();
-          return;
-        }
-
-        // Success :)
-        this.show = false;
-        this.showChange.emit();
-
-      })
+        this.password = '';
+        this.error = error;
+        document.getElementById('login-password').focus();
+      }
+    );
   }
 
   ngOnInit() {

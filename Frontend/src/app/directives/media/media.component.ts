@@ -8,8 +8,7 @@ import { ToastService } from '../../services/toast.service';
 @Component({
   selector: 'app-media',
   templateUrl: './media.component.html',
-  styleUrls: ['./media.component.css'],
-  providers: [FileService, ToastService]
+  styleUrls: ['./media.component.css']
 })
 export class MediaComponent implements OnInit {
   loading = true;
@@ -29,12 +28,12 @@ export class MediaComponent implements OnInit {
 
   get() {
     this._fileService.all()
-    .subscribe(
-      (files) => {
-        this.files = files;
-        this.loading = false;
-      }
-    );
+      .subscribe(
+        (files) => {
+          this.files = files;
+          this.loading = false;
+        }
+      );
   }
 
   delete(path: string) {
@@ -60,7 +59,7 @@ export class MediaComponent implements OnInit {
 
     // Ensure there's a picture to upload!
     this.fileToUpload = fileInput.target.files[0];
-    if (! this.fileToUpload) return this._toast.error('Please upload a file');
+    if (!this.fileToUpload) return this._toast.error('Please upload a file');
 
     const clear = (error: any = null) => {
       this.progress = -1;
@@ -68,7 +67,8 @@ export class MediaComponent implements OnInit {
       this.uploadField.nativeElement.value = '';
 
       if (error !== null) this._toast.serverError(error);
-      else {
+      else
+      {
         this._toast.success('File uploaded successfully');
         this.get();
       }

@@ -7,7 +7,7 @@ import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  providers: [Location, {provide: LocationStrategy, useClass: PathLocationStrategy}]
+  providers: [Location, { provide: LocationStrategy, useClass: PathLocationStrategy }]
 })
 export class AppComponent {
 
@@ -20,17 +20,18 @@ export class AppComponent {
     public auth: AuthService
   ) {
     _router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
+      if (event instanceof NavigationEnd)
+      {
 
         // Get title from route data
-        _title.setTitle(`Robert Holden » ${ this.routeData('title', ' - ') }`);
+        _title.setTitle(`Robert Holden » ${this.routeData('title', ' - ')}`);
 
         // Update meta tags
-        const desc      = this.routeData('description') || 'Robert Holden';
-        const keywords  = this.routeData('keywords', ', ');
+        const desc = this.routeData('description') || 'Robert Holden';
+        const keywords = this.routeData('keywords', ', ');
 
-        _meta.updateTag({ name: 'description',    content: desc });
-        _meta.updateTag({ name: 'keywords',       content: `${ keywords }` });
+        _meta.updateTag({ name: 'description', content: desc });
+        _meta.updateTag({ name: 'keywords', content: `${keywords}` });
 
         window.scrollTo(0, 0);
 
@@ -46,7 +47,7 @@ export class AppComponent {
       if (ref.indexOf(path) > -1) ref = '/';
     });
 
-    if (ref !== '/')  this._router.navigate(['/login'], { queryParams: { ref } });
+    if (ref !== '/') this._router.navigate(['/login'], { queryParams: { ref } });
     else this._router.navigate(['/login']);
   }
 
@@ -62,15 +63,18 @@ export class AppComponent {
     const data = [];
     const state: any = this._router.routerState;
 
-    if (parent === '') {
+    if (parent === '')
+    {
       parent = this._router.routerState.root;
     }
 
-    if (parent && parent.snapshot.data && parent.snapshot.data[prop]) {
+    if (parent && parent.snapshot.data && parent.snapshot.data[prop])
+    {
       data.push(parent.snapshot.data[prop]);
     }
 
-    if (state && parent) {
+    if (state && parent)
+    {
       data.push(... this.getRouteData(prop, state.firstChild(parent)));
     }
 

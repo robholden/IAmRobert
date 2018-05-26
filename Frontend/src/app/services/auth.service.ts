@@ -1,145 +1,237 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/map';
-import { CookieService } from 'angular2-cookie';
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, pipe } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import * as Fingerprint2 from 'fingerprintjs2';
 
 import { AppConfig } from '../app.config';
 import { User } from '../models/user';
 import { CommonService } from './common.service';
+import { TokenService } from './token.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   private _guid = '';
 
   loggedIn = false;
-  token = '';
-  user: User;
+  user: User = null;
+  checkingApi = true;
+  checkingUser = true;
+  apiUp: boolean = null;
 
+  /**
+   * Creates an instance of AuthService.
+   *
+   * @param {HttpClient} _http
+   * @param {AppConfig} _config
+   * @param {CookieService} _cookieService
+   * @param {CommonService} _common
+   * @memberof AuthService
+   */
   constructor(
-    private _http: Http,
+    private _http: HttpClient,
     private _config: AppConfig,
-    private _cookieService: CookieService,
+    private _tokenService: TokenService,
     private _common: CommonService
   ) {
-    new Fingerprint2().get((result) => this._guid = result);
-    this.isLoggedIn((loggedIn: boolean) => {
-      if (!loggedIn) {
-        this.token = '';
-        this.logout();
-      }
-    });
+
+    // // Get browser fingerprint to create unique browser sessions
+    // new Fingerprint2().get((result, components) => this._guid = result);
+
+    // // Check api status
+    // this.apiCheck();
+
+    // // Run login check
+    // this.checkForLogin();
+
   }
 
-  isLoggedIn(callback: any) {
+  /**
+   * Runs an api health check
+   *
+   * Sets the interval value apiUp to true/false
+   *
+   * @memberof AuthService
+   */
+  apiCheck(): void {
+    const done = (state) => {
+      this.checkingApi = false;
+      this.apiUp = state;
+
+      if (!state) this.checkingUser = false;
+    }
+
+    this._http
+      .get<any>(`${this._config.apiURI}/check`)
+      .subscribe(
+        () => done(true),
+        (err) => {
+          console.log(err);
+          done(false);
+        }
+      );
+  }
+
+  /**
+   * Checks local storage for user data
+   *
+   * @param {*} [onLogout=null]
+   * @returns {void}
+   * @memberof AuthService
+   */
+  checkForLogin(): void {
+
+    // Run on failure
+    const onFail = () => {
+      this.checkingUser = false;
+      this.logout();
+    };
+
+    // Only run when api is up
+    if (this.apiUp === false)
+    {
+      onFail();
+      return;
+    }
 
     // Validate token
-    if (!this._cookieService.get('token')) return callback(false);
+    if (!this._tokenService.token)
+    {
+      onFail();
+      return;
+    }
 
     // Extract user
     try
     {
-      this.token = this._cookieService.get('token');
       this.user = JSON.parse(sessionStorage.getItem('user'));
       this.loggedIn = true;
     }
     catch (ex)
     {
-      callback(false);
+      onFail();
+      return;
     }
 
-    // Get user from api
-    this.fetchUser(callback);
+    // Complete lookup
+    if (!this.loggedIn)
+    {
+      onFail();
+      return;
+    }
+
+    // Get user info
+    this.rebindUser();
 
   }
 
-  fetchUser(callback: any) {
-
-    // Fetch user
-    this._http
-      .get(`${this._config.apiURI}/users/authenticated`, this.headers())
-      .map(res => res.json())
-      .subscribe(
-        (user) => {
-          if (!user)
-          {
-            callback(false);
-            return this.logout();
-          }
-
-          this.loggedIn = true;
-          this.setUser(user);
-
-          callback(true);
-        },
-        (err) => {
-          this.logout();
-          callback(false);
-        }
-      );
-
+  /**
+   * Updates local storage with a given user
+   *
+   * @param {User} [user=null]
+   * @memberof AuthService
+   */
+  setUser(user: User = null): void {
+    if (user != null) this.user = user;
+    if (this._common.cookiesEnabled) sessionStorage.setItem('user', JSON.stringify(this.user));
   }
 
-  logout(callback: any = null) {
-    callback = callback || (() => {});
+  /**
+   * Rebinds the latest version of the user from the api
+   *
+   * @memberof AuthService
+   */
+  rebindUser(): void {
+    this.checkSession().subscribe(
+      (user: User) => {
+        this.setUser(user);
+        this.checkingUser = false;
+      },
+      (error) => this.checkingUser = false
+    );
+  }
+
+  /**
+   * Fetch new user instance from api
+   *
+   * @returns {Observable<User>}
+   * @memberof AuthService
+   */
+  checkSession(): Observable<User> {
+    return this._http.get<User>(`${this._config.apiURI}/users/authenticated`);
+  }
+
+  /**
+   * Logs out the given user by clearing session data and tells our api
+   *
+   * @param {*} [onComplete=null]
+   * @memberof AuthService
+   */
+  logout(onComplete: any = null): void {
+
+    // Remove session  data
     sessionStorage.removeItem('user');
     this.loggedIn = false;
     this.user = null;
-    this._cookieService.remove('token');
 
-    if (this.token) {
-      this._http
-        .get(`${this._config.apiURI}/users/logout?token=${this.token}`, this.headers())
-        .subscribe(
-          (ok) => callback(),
-          (err) => callback()
-        );
-      this.token = '';
+    const onEnd = () => {
+      if (onComplete) onComplete();
     }
-  }
 
-  login(username: string, password: string, remember: boolean, callback: any) {
+    // Tell our api they're logging out
+    if (this._tokenService.token && this.apiUp)
+    {
+      this._http
+        .get(`${this._config.apiURI}/users/logout?accessToken=${this._tokenService.token}`)
+        .subscribe(
+          (ok) => onEnd(),
+          (err) => onEnd()
+        );
+    }
+    else onEnd();
 
-    const promise = this._http
-      .post(`${this._config.apiURI}/users/login`, { username: username, password: password, key: this._guid })
-      .map(res => res.json());
-
-    promise.subscribe(
-      (response) => {
-        if (!response.state) return callback(true, response.message || 'An error occurred.');
-
-        this.token = response.token;
-        this.loggedIn = true;
-        this.setUser(response.user);
-
-        if (remember)
-        {
-          const expires = new Date();
-          expires.setSeconds(response.expiresIn);
-          this._cookieService.put('token', response.token, { expires });
-        }
-        else this._cookieService.put('token', response.token);
-
-        callback(false);
-      },
-      (error) => callback(true, 'An API error occurred')
-    );
+    // Clear token
+    this._tokenService.removeToken();
 
   }
 
-  setUser(user: User = null) {
-    this.user = user || this.user;
-    sessionStorage.setItem('user', JSON.stringify(this.user));
-  }
+  /**
+   * Attempts to login user via the api
+   *
+   * @param {string} username
+   * @param {string} password
+   * @param {boolean} remember
+   * @param {*} onComplete
+   * @param {*} onError
+   * @memberof AuthService
+   */
+  login(username: string, password: string, remember: boolean, onComplete: any, onError: any): void {
 
-  headers() {
-    if (!this.token) return null;
+    // Create
+    this._http
+      .post<any>(`${this._config.apiURI}/users/login`, { username, password, key: this._guid })
+      .subscribe(
+        (response) => {
 
-    const headers = new Headers({
-      'Authorization': `Bearer  ${this.token}`,
-      'Content-Type': 'application/json'
-    });
+          // Validate state
+          if (!response.state) return onError(response.message || 'An unexpected error has occurred');
 
-    return new RequestOptions({ headers: headers });
+          // Set token
+          this._tokenService.setToken(response.token, remember ? response.expiresIn : 0);
+
+          // Get user
+          this.checkSession().subscribe((user) => {
+            this.setUser(user);
+            this.checkForLogin();
+            onComplete();
+          });
+
+        },
+        (error) => onError('An unexpected error has occurred')
+      );
   }
 }

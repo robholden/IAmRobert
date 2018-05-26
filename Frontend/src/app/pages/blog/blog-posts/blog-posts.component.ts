@@ -7,8 +7,7 @@ import { Post } from '../../../models/post';
 @Component({
   selector: 'app-blog-posts',
   templateUrl: './blog-posts.component.html',
-  styleUrls: ['./blog-posts.component.css'],
-  providers: [PostService]
+  styleUrls: ['./blog-posts.component.css']
 })
 export class BlogPostsComponent implements OnInit {
   posts: Post[] = [];
@@ -26,7 +25,7 @@ export class BlogPostsComponent implements OnInit {
     private _router: Router,
     private _postService: PostService,
     public auth: AuthService
-  ) { 
+  ) {
 
     // Show the login page?
     this._route.data.subscribe(data => this.goToLogin = (data.goToLogin === true) && !auth.loggedIn);
@@ -47,18 +46,18 @@ export class BlogPostsComponent implements OnInit {
     // Begin lookup
     this.fetching = true;
     this._postService.search(this.value, this.orderBy, this.orderDir, this.page)
-    .subscribe(
-      (posts: Post[]) => {
-        this.posts = posts;
-        this.fetching = false;
-        this.loading = false;
-        this.end = posts.length === 0;
-      },
-      (error) => {
-        this.fetching = false
-        this.loading = false
-      }
-    );
+      .subscribe(
+        (posts: Post[]) => {
+          this.posts = posts;
+          this.fetching = false;
+          this.loading = false;
+          this.end = posts.length === 0;
+        },
+        (error) => {
+          this.fetching = false
+          this.loading = false
+        }
+      );
 
   }
 

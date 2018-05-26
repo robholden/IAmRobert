@@ -1,14 +1,11 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Http } from '@angular/http';
 import { Title } from '@angular/platform-browser';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-index',
-  templateUrl: 'index.component.html',
-  providers: []
+  templateUrl: 'index.component.html'
 })
 
 export class IndexComponent implements OnInit {
@@ -20,7 +17,6 @@ export class IndexComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _title: Title,
-    private _http: Http
   ) {
     this._route.data
       .subscribe(data => {
@@ -31,7 +27,8 @@ export class IndexComponent implements OnInit {
 
   scrollTo(id: string): void {
     const element = document.getElementById(id);
-    if (! element) {
+    if (!element)
+    {
       return;
     }
 
@@ -51,15 +48,19 @@ export class IndexComponent implements OnInit {
 
     this.offset = this._sanitizer.bypassSecurityTrustStyle(`translateY(${val}px)`);
 
-    for (let i = 0; i < milestones.length; i++) {
+    for (let i = 0; i < milestones.length; i++)
+    {
       const el = milestones[i];
       const x = el.getBoundingClientRect().top;
 
-      if (x < (wH - 100)) {
-        if (el.className.indexOf('in-view') === -1) {
+      if (x < (wH - 100))
+      {
+        if (el.className.indexOf('in-view') === -1)
+        {
           el.className = el.className + ' in-view';
         }
-      } else {
+      } else
+      {
         el.className = el.className.replace('in-view', '');
       }
     }
