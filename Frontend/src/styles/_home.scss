@@ -188,12 +188,12 @@
 
 .fade-multiple {
   span {
-    @include transform(scale(0));
+    transform: scale(0);
   }
 
   &.in-view {
     span {
-      @include transform(scale(1));
+      transform: scale(1);
       animation: scalebounce ease 0.75s;
     }
   }
@@ -201,19 +201,19 @@
 
 @include keyframes(scalebounce) {
   0% {
-    @include transform(scale(0));
+    transform: scale(0);
   }
 
   50% {
-    @include transform(scale(1.1));
+    transform: scale(1.1);
   }
 
   75% {
-    @include transform(scale(0.9));
+    transform: scale(0.9);
   }
 
   100% {
-    @include transform(scale(1));
+    transform: scale(1);
   }
 }
 

@@ -24,7 +24,7 @@ section {
   background-color: $light-grey;
 
   &.full {
-    @include calc(min-height, "100vh - #{$nav-height}");
+    min-height: calc(100vh - #{$nav-height});
   }
 
   &.white {

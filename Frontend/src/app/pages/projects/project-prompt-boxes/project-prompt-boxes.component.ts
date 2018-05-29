@@ -15,6 +15,10 @@ export class ProjectPromptBoxesComponent implements OnInit {
     this.pb = new PromptBoxes();
   }
 
+  permanent() {
+    this.pb.info('This is a permanent toast', { duration: 0, showClose: true })
+  }
+
   success() {
     this.pb.success('This is an example success toast');
   }

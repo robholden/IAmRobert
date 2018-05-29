@@ -1,3 +1,5 @@
+/** Variables **/
+$br: 2px;
 
 .toast, #sc-confirm, #sc-backdrop {
   transition: ease 0.25s;
@@ -9,21 +11,21 @@
 
 /** Toast styles **/
 .toast {
-  display: inline;
+  display: inline-block;
   position: fixed;
   top: 0.25em;
   left: 0;
   right: 0;
-  max-width: 400px;
   transform: scale(0);
-
+  width: 400px;
   margin: {
     right: auto;
     left: auto;
   }
+
   padding: 1em;
   color: $white;
-  border-radius: 0;
+  border-radius: $br;
   text-align: center;
 
   z-index: 9999;
@@ -38,11 +40,11 @@
     border-bottom: 4px solid $dark-red;
   }
   
-    &.info {
-      color: $black;
-      background: $light-grey;
-      border-bottom: 4px solid $grey;
-    }
+  &.info {
+    color: $black;
+    background: $light-grey;
+    border-bottom: 4px solid $grey;
+  }
 
   &.show {
     transform: scale(1);
@@ -50,6 +52,20 @@
 
   &.gone {
     transform: scale(0);
+  }
+  
+  &[data-close="true"] {
+    padding-right: 3em;
+  }
+
+  .toast-close {
+    position: absolute;;
+    right: 0.75em;
+    top: 50%;
+    margin-top: -13.5px;
+    text-decoration: none;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -83,7 +99,7 @@
     left: auto;
   }
   padding: 1em;
-  border-radius: 0;
+  border-radius: $br;
 
   background: $white;
   border-bottom: 4px solid $grey;
@@ -106,7 +122,7 @@
     margin-bottom: 1em;
     border: 1px solid $light-grey;
     font-size: 1em;
-    border-radius: 0;
+    border-radius: $br;
 
     &:focus, &:active {
       outline: none;
@@ -117,7 +133,7 @@
   button {
     display: inline-block;
     background: transparent;
-    border-radius: 0;
+    border-radius: $br;
     border: 1px solid $blue;
     padding: 0.5em 1em;
     color: $blue;
@@ -158,6 +174,7 @@
         cursor: not-allowed;
       }
     }
+
     
     &:only-of-type {
       float: none;

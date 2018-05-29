@@ -2485,7 +2485,6 @@ section {
   color: #252525;
   background-color: #EEE; }
   section.full {
-    min-height: -webkit-calc(100vh - 53px);
     min-height: calc(100vh - 53px); }
   section.white {
     background-color: #FFF; }
@@ -2865,64 +2864,50 @@ header {
     right: 0; }
 
 .fade-multiple span {
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  -o-transform: scale(0);
   transform: scale(0); }
 
 .fade-multiple.in-view span {
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  -o-transform: scale(1);
   transform: scale(1);
   animation: scalebounce ease 0.75s; }
 
 @-webkit-keyframes scalebounce {
   0% {
-    -webkit-transform: scale(0); }
+    transform: scale(0); }
   50% {
-    -webkit-transform: scale(1.1); }
+    transform: scale(1.1); }
   75% {
-    -webkit-transform: scale(0.9); }
+    transform: scale(0.9); }
   100% {
-    -webkit-transform: scale(1); } }
+    transform: scale(1); } }
 
 @-moz-keyframes scalebounce {
   0% {
-    -moz-transform: scale(0); }
+    transform: scale(0); }
   50% {
-    -moz-transform: scale(1.1); }
+    transform: scale(1.1); }
   75% {
-    -moz-transform: scale(0.9); }
+    transform: scale(0.9); }
   100% {
-    -moz-transform: scale(1); } }
+    transform: scale(1); } }
+
+@-o-keyframes scalebounce {
+  0% {
+    transform: scale(0); }
+  50% {
+    transform: scale(1.1); }
+  75% {
+    transform: scale(0.9); }
+  100% {
+    transform: scale(1); } }
 
 @keyframes scalebounce {
   0% {
-    -webkit-transform: scale(0);
-    -moz-transform: scale(0);
-    -ms-transform: scale(0);
-    -o-transform: scale(0);
     transform: scale(0); }
   50% {
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
     transform: scale(1.1); }
   75% {
-    -webkit-transform: scale(0.9);
-    -moz-transform: scale(0.9);
-    -ms-transform: scale(0.9);
-    -o-transform: scale(0.9);
     transform: scale(0.9); }
   100% {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
     transform: scale(1); } }
 
 @-webkit-keyframes rotateleft {
@@ -2932,6 +2917,12 @@ header {
     transform: rotate(-360deg); } }
 
 @-moz-keyframes rotateleft {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(-360deg); } }
+
+@-o-keyframes rotateleft {
   from {
     transform: rotate(0deg); }
   to {
@@ -2952,6 +2943,14 @@ header {
     box-shadow: 0 0 0 #f66; } }
 
 @-moz-keyframes shadowpulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 50px #f66; }
+  50% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 #f66; } }
+
+@-o-keyframes shadowpulse {
   0%, 100% {
     transform: scale(1);
     box-shadow: 0 0 50px #f66; }
@@ -3007,6 +3006,12 @@ header {
     transform: scale(1); } }
 
 @-moz-keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0); }
+  50% {
+    transform: scale(1); } }
+
+@-o-keyframes sk-bounce {
   0%, 100% {
     transform: scale(0); }
   50% {
@@ -3075,6 +3080,12 @@ header {
     background: #FF4444; } }
 
 @-moz-keyframes flash {
+  from {
+    background: #EEE; }
+  to {
+    background: #FF4444; } }
+
+@-o-keyframes flash {
   from {
     background: #EEE; }
   to {
@@ -3156,7 +3167,8 @@ header {
     font-size: 32px;
     color: #f69;
     text-decoration: underline;
-    margin-top: 1em; }
+    margin-top: 1em;
+    margin-bottom: 0.5em; }
   #project ul {
     margin-top: 5px;
     list-style: disc; }
@@ -3270,6 +3282,7 @@ header {
   border-right: 5px solid black;
   cursor: se-resize; }
 
+/** Variables **/
 .toast, #sc-confirm, #sc-backdrop {
   transition: ease 0.25s; }
   .toast a, .toast button, .toast input, .toast textarea, .toast select, .toast div, #sc-confirm a, #sc-confirm button, #sc-confirm input, #sc-confirm textarea, #sc-confirm select, #sc-confirm div, #sc-backdrop a, #sc-backdrop button, #sc-backdrop input, #sc-backdrop textarea, #sc-backdrop select, #sc-backdrop div {
@@ -3277,18 +3290,18 @@ header {
 
 /** Toast styles **/
 .toast {
-  display: inline;
+  display: inline-block;
   position: fixed;
   top: 0.25em;
   left: 0;
   right: 0;
-  max-width: 400px;
   transform: scale(0);
+  width: 400px;
   margin-right: auto;
   margin-left: auto;
   padding: 1em;
   color: #F9F9F9;
-  border-radius: 0;
+  border-radius: 2px;
   text-align: center;
   z-index: 9999; }
   .toast.success {
@@ -3305,6 +3318,16 @@ header {
     transform: scale(1); }
   .toast.gone {
     transform: scale(0); }
+  .toast[data-close="true"] {
+    padding-right: 3em; }
+  .toast .toast-close {
+    position: absolute;
+    right: 0.75em;
+    top: 50%;
+    margin-top: -13.5px;
+    text-decoration: none;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.5); }
 
 #sc-backdrop {
   position: fixed;
@@ -3330,7 +3353,7 @@ header {
   margin-right: auto;
   margin-left: auto;
   padding: 1em;
-  border-radius: 0;
+  border-radius: 2px;
   background: #F9F9F9;
   border-bottom: 4px solid #BBB;
   z-index: 9999; }
@@ -3346,14 +3369,14 @@ header {
     margin-bottom: 1em;
     border: 1px solid #EEE;
     font-size: 1em;
-    border-radius: 0; }
+    border-radius: 2px; }
     #sc-confirm input:focus, #sc-confirm input:active {
       outline: none;
       border-color: #BBB; }
   #sc-confirm button {
     display: inline-block;
     background: transparent;
-    border-radius: 0;
+    border-radius: 2px;
     border: 1px solid #4d9ac9;
     padding: 0.5em 1em;
     color: #4d9ac9;

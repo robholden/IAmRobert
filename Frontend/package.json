@@ -30,7 +30,7 @@
     "ng-simple-slideshow": "^1.2.2",
     "ngx-clipboard": "^11.1.0",
     "ngx-cookie": "^4.0.2",
-    "prompt-boxes": "^1.1.6",
+    "prompt-boxes": "^1.1.7",
     "rxjs": "^6.1.0",
     "rxjs-compat": "^6.2.0",
     "simplemde": "^1.11.2",
