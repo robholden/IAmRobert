@@ -1,7 +1,34 @@
 /** Variables **/
-$br: 2px;
+$toast_white: #FFF;
+$toast_black: #252525;
 
-.toast, #sc-confirm, #sc-backdrop {
+$toast_light-grey: #EEE;
+$toast_grey: #CCC;
+$toast_dark-grey: #999;
+ 
+$toast_light-blue: #79bde6;
+$toast_blue: #4591bf;
+$toast_dark-blue: #366988;
+
+$toast_light-red: #ff7575;
+$toast_red: #da4242;
+$toast_dark-red: #af3535;
+
+$toast_light-green: #6ed06c;
+$toast_green: #51cc50;
+$toast_dark-green: #409c3f;
+
+$toast_br: 2px;
+
+body {
+  font-family: sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#pb-container, .pb-backdrop {
   transition: ease 0.25s;
 
   a, button, input, textarea, select, div {
@@ -9,11 +36,78 @@ $br: 2px;
   }
 }
 
-/** Toast styles **/
-.toast {
+.pb-toast {
+  transition: ease 0.25s;
+
+  a, button, input, textarea, select, div {
+    transition: ease 0.25s;
+  }
+}
+
+.pb-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 97;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.8);
+
+  &[data-show] {
+    opacity: 1;
+  }
+}
+
+#pb-container {
   display: inline-block;
   position: fixed;
-  top: 0.25em;
+  top: 40vh;
+  left: 0;
+  right: 0;
+  max-width: 375px;
+  transform: scale(0);
+
+  margin: {
+    top: -50px;
+    right: auto;
+    left: auto;
+  }
+  padding: 1em;
+  border-radius: $toast_br;
+
+  background: $toast_white;
+  border-bottom: 4px solid $toast_grey;
+
+  z-index: 99;
+
+  &.absolute {
+    margin-top: 40vh;
+  }  
+
+  input {
+    display: block;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid $toast_light-grey;
+    font-size: 1em;
+    border-radius: $toast_br;
+
+    &:focus, &:active {
+      outline: none;
+      border-color: $toast_grey;
+    }
+  }
+
+  &[data-show] {
+    transform: scale(1);
+  }
+}
+
+.pb-toast {
+  display: inline-block;
+  position: fixed;
   left: 0;
   right: 0;
   transform: scale(0);
@@ -24,26 +118,31 @@ $br: 2px;
   }
 
   padding: 1em;
-  color: $white;
-  border-radius: $br;
+  color: $toast_white;
+  border-radius: $toast_br;
   text-align: center;
 
-  z-index: 9999;
+  z-index: 98;
+
+  &.top {
+    top: 50px;
+  }
+
+  &.bottom {
+    bottom: 0.25em;
+  }
 
   &.success {
-    background: $blue;
-    border-bottom: 4px solid $dark-blue;
+    background: $toast_blue;
   }
 
   &.error {
-    background: $red;
-    border-bottom: 4px solid $dark-red;
+    background: $toast_red;
   }
   
   &.info {
-    color: $black;
-    background: $light-grey;
-    border-bottom: 4px solid $grey;
+    color: $toast_black;
+    background: $toast_light-grey;
   }
 
   &.show {
@@ -69,127 +168,54 @@ $br: 2px;
   }
 }
 
-#sc-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9998;
-  opacity: 0;
-  background: rgba(0, 0, 0, 0.8);
-
-  &.show {
-    opacity: 1;
-  }
+.pb-message {
+  font-size: 1.05em;
+  margin: 0 0 0.75em;
 }
 
-#sc-confirm {
-  display: inline-block;
-  position: fixed;
-  top: 40vh;
-  left: 0;
-  right: 0;
-  max-width: 375px;
-  transform: scale(0);
-
-  margin: {
-    top: -50px;
-    right: auto;
-    left: auto;
-  }
-  padding: 1em;
-  border-radius: $br;
-
-  background: $white;
-  border-bottom: 4px solid $grey;
-
-  z-index: 9999;
-
-  &.absolute {
-    margin-top: 40vh;
-  }  
-
-  .sc-message {
-    font-size: 1.05em;
-    margin: 0 0 0.75em;
-  }
-
-  input {
-    display: block;
-    width: 100%;
-    padding: 0.5em;
-    margin-bottom: 1em;
-    border: 1px solid $light-grey;
-    font-size: 1em;
-    border-radius: $br;
-
-    &:focus, &:active {
-      outline: none;
-      border-color: $grey;
-    }
-  }
-
+.pb-buttons {
   button {
     display: inline-block;
-    background: transparent;
-    border-radius: $br;
-    border: 1px solid $blue;
+    background: $toast_light-grey;
+    border-radius: $toast_br;
+    border: none;
     padding: 0.5em 1em;
-    color: $blue;
+    color: #222;
     font-size: 1em;
     outline: none;
     overflow: hidden;
     cursor: pointer;
-    background: $white;
     box-shadow: none;
-    font-size: 0.9em;
+    font-size: 14px;
 
-    &:first-of-type {
-      background: $light-grey;
-      color: $red;
-      border: none;
-      border-bottom: 2px solid $red;
-
-      &:hover, &.active {
-        background: $red;
-        color: $white;
-      }
+    &:focus {
+      box-shadow: 0 0 0 3px #FFFFFF, 0 0 0px 5px rgba(0, 0, 0, 0.2);
     }
 
-    &:last-of-type {
+    &:hover {
+      background: $toast_grey;
+    }
+
+    &:not(:only-of-type):last-of-type {
       float: right;
-      background: $blue;
-      color: $white;
+      background: $toast_blue;
+      color: $toast_white;
+
+      &:focus {
+        box-shadow: 0 0 0 3px #FFFFFF, 0 0 0px 5px rgba(69, 145, 191, 0.5);
+      }
 
       &:hover {
-        background: $dark-blue;
+        background: $toast_dark-blue;
       }
       
       &[disabled] {
         opacity: 0.5;
         background: none;
-        border-color: $grey;
-        color: $dark-grey;
+        border-color: $toast_grey;
+        color: $toast_dark-grey;
         cursor: not-allowed;
       }
     }
-
-    
-    &:only-of-type {
-      float: none;
-      background: $light-grey;
-      color: $black;
-      border: none;
-
-      &:hover {
-        background: $grey;
-        color: $black;
-      }
-    }
-  }
-
-  &.show {
-    transform: scale(1);
   }
 }

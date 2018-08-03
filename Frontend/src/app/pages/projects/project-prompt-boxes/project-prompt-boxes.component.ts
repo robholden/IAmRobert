@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import * as PromptBoxes from 'prompt-boxes';
+
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-project-prompt-boxes',
@@ -8,39 +9,37 @@ import * as PromptBoxes from 'prompt-boxes';
   styleUrls: ['./project-prompt-boxes.component.css']
 })
 export class ProjectPromptBoxesComponent implements OnInit {
-  private pb: any;
 
-  constructor(private _title: Title) {
+  constructor(private _title: Title, private _toast: ToastService) {
     this._title.setTitle(`Robert Holden » Prompt Boxes`);
-    this.pb = new PromptBoxes();
   }
 
   permanent() {
-    this.pb.info('This is a permanent toast', { duration: 0, showClose: true })
+    this._toast.info('This is a permanent toast', 0)
   }
 
   success() {
-    this.pb.success('This is an example success toast');
+    this._toast.success('This is an example success toast');
   }
 
   danger() {
-    this.pb.error('This is an example error toast');
+    this._toast.error('This is an example error toast');
   }
 
   info() {
-    this.pb.info('This is an example info toast');
+    this._toast.info('This is an example info toast');
   }
 
   alert() {
-    this.pb.alert(
+    this._toast.alert(
       (outcome) => { alert('You have: ' + (outcome ? 'confirmed' : 'cancelled')) }, // Callback
-      'This is an example alert', // Label text
+      'This is an example alert',  // Label text
       'Ok',                        // Confirm text
     );
   }
 
   confirm() {
-    this.pb.confirm(
+    this._toast.confirm(
       (outcome) => { alert('You have: ' + (outcome ? 'confirmed' : 'cancelled')) }, // Callback
       'This is an example confirm', // Label text
       'Yes',                        // Confirm text
@@ -49,7 +48,7 @@ export class ProjectPromptBoxesComponent implements OnInit {
   }
 
   prompt() {
-    this.pb.prompt(
+    this._toast.prompt(
       (value) => { alert('You have: ' + (value ? 'entered ' + value : 'cancelled')) }, // Callback
       'This is an example prompt',  // Label text
       'text',                       // Input type
@@ -59,7 +58,7 @@ export class ProjectPromptBoxesComponent implements OnInit {
   }
 
   clear() {
-    this.pb.clear();
+    this._toast.clear();
   }
 
   ngOnInit() {
