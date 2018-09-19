@@ -1,0 +1,45 @@
+<header [class.show]="show || routeRedirect" [class.init]="init">
+  <div class="container">
+    <h1>
+      <a routerLink="/" (click)="goTo('home')">
+        <span>Robert</span> <span>Holden</span>
+      </a>
+    </h1>
+
+    <nav>
+      <ul>
+        <li>
+          <a [routerLink]="routeRedirect ? '/' : null" [class.active]="page === 'home'" (click)="goTo('home')">
+            <i class="fa fa-heart"></i> 
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a [routerLink]="routeRedirect ? '/skills' : null" [class.active]="page === 'skills'" (click)="goTo('skills')">
+            <i class="fa fa-trophy"></i> 
+            Skills
+          </a>
+        </li>
+        
+        <li>
+          <a [routerLink]="routeRedirect ? '/projects' : null" [class.active]="page === 'projects'" (click)="goTo('projects')">
+            <i class="fa fa-folder"></i> 
+            Projects
+          </a>
+        </li>
+
+        <li>
+          <a [routerLink]="routeRedirect ? '/about' : null" [class.active]="page === 'about'" (click)="goTo('about')">
+            <i class="fa fa-coffee"></i> 
+            About
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="cl"></div>
+  </div>
+</header>
+
+<app-cctv class="no-animation"></app-cctv>
