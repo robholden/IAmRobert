@@ -23,7 +23,7 @@
     "@angular/router": "^6.1.7",
     "core-js": "^2.5.7",
     "fingerprintjs2": "^1.8.1",
-    "image-area-selector": "^1.2.2",
+    "image-area-selector": "^1.2.3",
     "marked": "^0.5.0",
     "ng-simple-slideshow": "^1.2.5",
     "ngx-clipboard": "^11.1.7",

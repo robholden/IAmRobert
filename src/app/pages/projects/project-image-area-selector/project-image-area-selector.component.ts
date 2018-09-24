@@ -17,8 +17,8 @@ export class ProjectImageAreaSelectorComponent implements OnInit {
       onStart: (type, data) => {
         document.getElementById('preview').style.display = 'none';
       },
-      onChange: (type, result) => { },
-      onEnd: (type, data) => {
+      onChange: (e) => { },
+      onEnd: (e) => {
         const img: any = document.getElementById('preview');
         img.src = this.selector.crop();
         img.style.display = 'block';
