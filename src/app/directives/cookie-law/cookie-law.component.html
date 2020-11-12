@@ -1,6 +1,9 @@
 <div class="banner" *ngIf="!common.cookiesEnabled">
-  <div class="container">
-    <p>This website uses cookies to ensure you get the best experience on our website. Learn more in our <a routerLink="/cookie" target="_blank">cookie policy</a>.</p>
-    <button (click)="accept()">Accept</button>
-  </div>
+    <div class="container">
+        <p>
+            This website uses cookies to ensure you get the best experience on our website. Learn more in our
+            <a routerLink="/cookie" target="_blank" rel="noopener">cookie policy</a>.
+        </p>
+        <button (click)="accept()">Accept</button>
+    </div>
 </div>

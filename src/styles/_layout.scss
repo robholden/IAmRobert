@@ -1,125 +1,125 @@
 main {
-  &.logged-in {
-    padding-bottom: $post-nav-height;
-  }
+    &.logged-in {
+        padding-bottom: $post-nav-height;
+    }
 }
 
 .container {
-  width: 100%;
-  max-width: 1400px;
-  margin: auto;
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
 }
 
 .first {
-  margin-top: $nav-height;
+    margin-top: $nav-height;
 }
 
 section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  padding: 5vh;
-  color: $black;
-  background-color: $light-grey;
+    padding: 5vh;
+    color: $black;
+    background-color: $light-grey;
 
-  &.full {
-    min-height: calc(100vh - #{$nav-height});
-  }
-
-  &.white {
-    background-color: $light-white;
-  }
-
-  h1 {
-    font-size: 5rem;
-    text-shadow: 1px 1px #999;
-
-    @media (max-width: 768px) {
-      font-size: 3.5rem;
-    }      
-  }
-
-  h2 {
-    font-size: 2rem;
-    color: $dark-grey;
-    margin: 0.25em 0;
-  }
-
-  .on-the-left,
-  .on-the-right {
-    display: inline-block;
-  }
-
-  .on-the-left {
-    width: 55%;
-
-    @media (max-width: 768px) {
-      display: block;
-      width: 100%;
-
-      .info-block {
-        margin: 0;
-      }
-    }
-  }
-
-  .on-the-right {
-    position: relative;
-    height: 100%;
-    width: 44%;
-    text-align: center;
-
-    img {
-      width: 100%;
-      max-width: 300px;
+    &.full {
+        min-height: calc(100vh - #{$nav-height});
     }
 
-    @media (max-width: 768px) {
-      display: block;
-      width: 100%;
-      margin-top: 2em;
-    }
-  }
-
-  .info-block {
-    display: block;
-    margin-top: 4em;
-
-    &:first-child {
-      margin-top: 0;
+    &.white {
+        background-color: $light-white;
     }
 
-    h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5em;
-      color: $black;
-      // color: $orange;
+    h1 {
+        font-size: 5rem;
+        // text-shadow: 1px 1px #999;
 
-      i {
-        top: -2px;
-        margin-right: 0.25em;
-        font-size: 1rem;
-      }
+        @media (max-width: 768px) {
+            font-size: 3.5rem;
+        }
     }
 
-    p {
-      line-height: 1.7;
-      margin-top: 1em;;
+    h2 {
+        font-size: 2rem;
+        color: $dark-grey;
+        margin: 0.25em 0;
     }
 
-    span {
-      display: inline-block;
-      font-size: 1em;
-      margin: {
-        top: 0.75em; 
-        right: 0.5em;
-      }
-      padding: 0.75em 0.75em 0.65em;
-      border: 1px solid $light-black;
-      border-radius: 15px;
-      color: $black;
-      cursor: default;
+    .on-the-left,
+    .on-the-right {
+        display: inline-block;
     }
-  }
+
+    .on-the-left {
+        width: 55%;
+
+        @media (max-width: 768px) {
+            display: block;
+            width: 100%;
+
+            .info-block {
+                margin: 0;
+            }
+        }
+    }
+
+    .on-the-right {
+        position: relative;
+        height: 100%;
+        width: 44%;
+        text-align: center;
+
+        img {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            display: block;
+            width: 100%;
+            margin-top: 2em;
+        }
+    }
+
+    .info-block {
+        display: block;
+        margin-top: 2em;
+
+        &:first-of-type {
+            margin-top: 1em;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5em;
+            color: $black;
+            // color: $orange;
+
+            i {
+                top: -2px;
+                margin-right: 0.25em;
+                font-size: 1rem;
+            }
+        }
+
+        p {
+            line-height: 1.7;
+            margin-top: 1em;
+        }
+
+        span {
+            display: inline-block;
+            font-size: 1em;
+            margin: {
+                top: 0.75em;
+                right: 0.5em;
+            }
+            padding: 0.75em 0.75em 0.65em;
+            border: 1px solid $light-black;
+            border-radius: 15px;
+            color: $black;
+            cursor: default;
+        }
+    }
 }

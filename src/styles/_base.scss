@@ -1,91 +1,132 @@
-.cl { clear: both; }
-.fr { float: right; }
-.fl { float: left; }
+.cl {
+    clear: both;
+}
+.fr {
+    float: right;
+}
+.fl {
+    float: left;
+}
 
-.mg-none    { margin: 0 !important; }
-.mg-top     { margin-top: 1rem; }
-.mg-right   { margin-right: 1rem; }
-.mg-bottom  { margin-bottom: 1rem; }
-.mg-left    { margin-left: 1rem; }
+.mg-none {
+    margin: 0 !important;
+}
+.mg-top {
+    margin-top: 1rem;
+}
+.mg-right {
+    margin-right: 1rem;
+}
+.mg-bottom {
+    margin-bottom: 1rem;
+}
+.mg-left {
+    margin-left: 1rem;
+}
 
-.pg-none    { padding: 0 !important; }
-.pg-top     { padding-top: 1rem; }
-.pg-right   { padding-right: 1rem; }
-.pg-bottom  { padding-bottom: 1rem; }
-.pg-left    { padding-left: 1rem; }
+.pg-none {
+    padding: 0 !important;
+}
+.pg-top {
+    padding-top: 1rem;
+}
+.pg-right {
+    padding-right: 1rem;
+}
+.pg-bottom {
+    padding-bottom: 1rem;
+}
+.pg-left {
+    padding-left: 1rem;
+}
 
-.pg         { padding: 1rem; }
-.pg-large   { padding: 2rem; }
+.pg {
+    padding: 1rem;
+}
+.pg-large {
+    padding: 2rem;
+}
 
 body {
-  font-family: $font-family;
-  font-size: 14px;
-  background: $light-grey;
+    font-family: $font-family;
+    font-size: 16px;
+    background: $light-grey;
 }
 
-a, div, input, button, i {
-  transition: ease 0.25s;
+a,
+div,
+input,
+button,
+i {
+    transition: ease 0.25s;
 }
 
-h1, h2, h3, h4 {
-  color: $orange;
-  font-family: $fancy-font;
+h1,
+h2,
+h3,
+h4 {
+    color: $orange;
+    font-family: $fancy-font;
 }
 
-h3, h4 {
-  font-family: $font-family;
+h3,
+h4 {
+    font-family: $font-family;
 }
 
 .no-animation {
-  a, div, input, button {
-    transition: none;
-  }
+    a,
+    div,
+    input,
+    button {
+        transition: none;
+    }
 }
 
 a {
-  cursor: pointer;
-  color: $orange;
-  text-decoration: none;
-
-  &:hover {
-    color: $dark-orange;
+    cursor: pointer;
+    color: $orange;
     text-decoration: none;
-  }
+
+    &:hover {
+        color: $dark-orange;
+        text-decoration: none;
+    }
 }
 
 .button {
-  display: inline-block;
-  font-size: 0.9em;
-  margin: {
-    top: 0.75em; 
-    right: 0.5em;
-  }
-  padding: 0.75em 1em;
-  border-radius: 0;
-  border: 1px solid $light-black;
-  color: $light-black;
-  cursor: pointer;
-  background: none;
-
-  &:hover {
-    background: $light-black;
-    color: $light-white;
-  }
-
-  &.danger {
-    color: $red;
-    border-color: $red;
+    display: inline-block;
+    font-size: 0.9em;
+    margin: {
+        top: 0.75em;
+        right: 0.5em;
+    }
+    padding: 0.75em 1em;
+    border-radius: 0;
+    border: 1px solid $light-black;
+    color: $light-black;
+    cursor: pointer;
+    background: none;
 
     &:hover {
-      background: $red;
-      color: $light-white;
+        background: $light-black;
+        color: $light-white;
     }
-  }
 
-  &[disabled] {
-    cursor: not-allowed;
-    opacity: 0.75;
-    border-color: $grey;
-    color: $grey;
-  }
+    &.danger {
+        color: $red;
+        border-color: $red;
+
+        &:hover {
+            background: $red;
+            color: $light-white;
+        }
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: 0.75;
+        border-color: $grey;
+        color: $grey;
+    }
 }

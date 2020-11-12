@@ -1,240 +1,247 @@
 #home {
-  text-align: center;
-  font-family: $block-font;
-  display: flex;
-  padding: 2em 1.5em;
+    text-align: center;
+    font-family: $block-font;
+    display: flex;
+    padding: 2em 1.5em;
 
-  .retro-logo {
-    transition: none;
-    display: inline-block;
-    width: 100%;
-  }
-
-  h1 {
-    font-size: 5.5rem;
-    letter-spacing: .1em;
-    font-weight: bold;
-    color: $pink;
-    font-family: inherit;
-  }
-
-  .full-stack {
-    padding: 4em 0;
-
-    h2 {
-      display: inline-block;
-      font-family: $fancy-font;
-      color: $dark-black;
-      font-size: 3.75em;
-    }
-
-    div {
-      display: inline-block;
-      width: 12.5%; 
-      height: 18px;
-      margin: 0 2em;
-      border-top: 4px solid $dark-black;
-      border-bottom: 4px solid $dark-black;
-    }
-  }
-
-  .location {
-    font-size: 3em;
-    font-weight: bold;
-    color: $dark-blue;
-
-    span {
-      display: inline-block;
-      width: 300px;
-      margin: 0;
-
-      &:first-child {
-        font-size: 0.8em;
-      }
-    }
-  }
-
-  .icons {
-    margin-top: 4.5em;
-    
-    ul {
-      text-align: center;
-      
-      li {
-        display: inline-block;
-        
-        a {
-          display: block;
-          width: 50px;
-          height: 50px;
-          font-size: 2.5em;
-        }
-        
-        a:hover {
-          opacity: 0.9;
-        }
-      }
-      
-      li.twitter a {
-        color: #2caae1;
-      }
-      
-      li.facebook a {
-        color: #3b5998;
-      }
-      
-      li.linked-in a {
-        color: #4d9ac9;
-      }
-
-      li.instagram a {
-        color: #3b6a94;
-      }
-    }
-  }
-
-  @media (max-width: 768px) {
     .retro-logo {
-      padding: 2em 0;
+        transition: none;
+        display: inline-block;
+        width: 100%;
     }
 
     h1 {
-      font-size: 2.5rem;
+        font-size: 5.5rem;
+        letter-spacing: 0.1em;
+        font-weight: bold;
+        color: $pink;
+        font-family: inherit;
     }
-  
+
     .full-stack {
-      padding: 1em 0;
-  
-      h2 {
-        font-size: 2.75em;
-        padding: 0 0.25em;
-      }
-  
-      div {
-        width: 30px; 
-        height: 10px;
-        margin: 2em 0;
-        border-top-width: 2px;
-        border-bottom-width: 2px;
-      }
-    }
-  
-    .location {
-      font-size: 2em;
-  
-      span {
-        display: block;
-        width: 100%;
-  
-        &:first-child {
-          font-size: 0.8em;
+        padding: 4em 0;
+
+        h2 {
+            display: inline-block;
+            font-family: $fancy-font;
+            color: $dark-black;
+            font-size: 3.75em;
         }
-      }
+
+        div {
+            display: inline-block;
+            width: 12.5%;
+            height: 18px;
+            margin: 0 2em;
+            border-top: 4px solid $dark-black;
+            border-bottom: 4px solid $dark-black;
+        }
     }
-  }    
+
+    .location {
+        font-size: 3em;
+        font-weight: bold;
+        color: $dark-blue;
+
+        span {
+            display: inline-block;
+            width: 300px;
+            margin: 0;
+
+            &:first-child {
+                font-size: 0.8em;
+            }
+        }
+    }
+
+    .icons {
+        margin-top: 4.5em;
+
+        ul {
+            text-align: center;
+
+            li {
+                display: inline-block;
+
+                a {
+                    display: block;
+                    width: 50px;
+                    height: 50px;
+                    font-size: 2.5em;
+                }
+
+                a:hover {
+                    opacity: 0.9;
+                }
+            }
+
+            li.twitter a {
+                color: #2caae1;
+            }
+
+            li.facebook a {
+                color: #3b5998;
+            }
+
+            li.linked-in a {
+                color: #4d9ac9;
+            }
+
+            li.instagram a {
+                color: #3b6a94;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .retro-logo {
+            padding: 2em 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        .full-stack {
+            padding: 1em 0;
+
+            h2 {
+                font-size: 2.75em;
+                padding: 0 0.25em;
+            }
+
+            div {
+                width: 30px;
+                height: 10px;
+                margin: 2em 0;
+                border-top-width: 2px;
+                border-bottom-width: 2px;
+            }
+        }
+
+        .location {
+            font-size: 2em;
+
+            span {
+                display: block;
+                width: 100%;
+
+                &:first-child {
+                    font-size: 0.8em;
+                }
+            }
+        }
+    }
 }
 
 .home-image {
-  display: inline-block;
-  width: 65%;
-  max-width: 300px;
+    display: inline-block;
+    width: 65%;
+    max-width: 300px;
 
-  div {
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    box-sizing: content-box;
-  }
+    div {
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        box-sizing: content-box;
+    }
 }
 
 .fade-up {
-  position: relative;
-  top: 25px;
-  opacity: 0;
-  transition: ease 0.25s;
+    position: relative;
+    top: 25px;
+    opacity: 0;
+    transition: ease 0.25s;
 
-  &.in-view {
-    opacity: 1;
-    top: 0;
-  }
+    &.in-view {
+        opacity: 1;
+        top: 0;
+    }
 }
 
 .fade-left {
-  position: relative;
-  left: -25px;
-  opacity: 0;
-  transition: ease 0.25s;
+    position: relative;
+    left: -25px;
+    opacity: 0;
+    transition: ease 0.25s;
 
-  &.in-view {
-    opacity: 1;
-    left: 0;
-  }
+    &.in-view {
+        opacity: 1;
+        left: 0;
+    }
 }
 
 .fade-right {
-  position: relative;
-  right: -25px;
-  opacity: 0;
-  transition: ease 0.25s;
+    position: relative;
+    right: -25px;
+    opacity: 0;
+    transition: ease 0.25s;
 
-  &.in-view {
-    opacity: 1;
-    right: 0;
-  }
+    &.in-view {
+        opacity: 1;
+        right: 0;
+    }
 }
 
 .fade-multiple {
-  span {
-    transform: scale(0);
-  }
-
-  &.in-view {
     span {
-      transform: scale(1);
-      animation: scalebounce ease 0.75s;
+        transform: scale(0);
     }
-  }
+
+    &.in-view {
+        span {
+            transform: scale(1);
+            animation: scalebounce ease 0.75s;
+        }
+    }
 }
 
 @include keyframes(scalebounce) {
-  0% {
-    transform: scale(0);
-  }
+    0% {
+        transform: scale(0);
+    }
 
-  50% {
-    transform: scale(1.1);
-  }
+    50% {
+        transform: scale(1.1);
+    }
 
-  75% {
-    transform: scale(0.9);
-  }
+    75% {
+        transform: scale(0.9);
+    }
 
-  100% {
-    transform: scale(1);
-  }
+    100% {
+        transform: scale(1);
+    }
 }
 
 @include keyframes(rotateleft) {
-  from { 
-    transform: rotate(-0deg);
-  }
-  
-  to {
-    transform: rotate(-360deg);
-  }
+    from {
+        transform: rotate(-0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
 }
 
 @include keyframes(shadowpulse) {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 50px $orange;
-  }
-  
-  50% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 $orange;
-  }
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 50px $orange;
+    }
+
+    50% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 $orange;
+    }
+}
+
+footer {
+    padding: 2rem;
+    text-align: center;
+    font-size: 12px;
 }

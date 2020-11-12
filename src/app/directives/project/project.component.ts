@@ -1,19 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.css']
+    selector: 'app-project',
+    templateUrl: './project.component.html'
 })
 export class ProjectComponent implements OnInit {
-  @Input() id: string = '';
-  @Input() name: string = '';
-  @Input() src: string = '';
-  @Input() dir: string = 'left';
+    @Input() id: string = '';
+    @Input() name: string = '';
+    @Input() src: string = '';
+    @Input() dir: string = 'left';
 
-  constructor() { }
+    constructor() {}
 
-  ngOnInit() {
-  }
-
+    ngOnInit() {}
 }
