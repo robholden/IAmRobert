@@ -7,7 +7,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CCTVComponent } from './directives/cctv/cctv.component';
-import { CookieLawComponent } from './directives/cookie-law/cookie-law.component';
 import { NavComponent } from './directives/nav/nav.component';
 import { PopupComponent } from './directives/popup/popup.component';
 import { ProjectComponent } from './directives/project/project.component';
@@ -23,7 +22,6 @@ import { SkillsComponent } from './pages/skills/skills.component';
 
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { ClipboardModule } from 'ngx-clipboard';
-import { CookieModule } from 'ngx-cookie';
 
 export const routerConfig: Routes = [
     {
@@ -74,7 +72,6 @@ export const routerConfig: Routes = [
         AboutComponent,
         ProjectPromptBoxesComponent,
         ProjectCCTVComponent,
-        CookieLawComponent,
         PopupComponent
     ],
     imports: [
@@ -84,8 +81,7 @@ export const routerConfig: Routes = [
         HttpClientModule,
         SlideshowModule,
         ClipboardModule,
-        RouterModule.forRoot(routerConfig),
-        CookieModule.forRoot()
+        RouterModule.forRoot(routerConfig)
     ],
     providers: [Title, Meta],
     bootstrap: [AppComponent]
