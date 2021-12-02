@@ -1,27 +1,20 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { DomSanitizer, SafeStyle, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-index',
-    templateUrl: 'index.component.html'
+    templateUrl: 'index.component.html',
 })
-
 export class IndexComponent implements OnInit {
     offset: SafeStyle;
     page: string;
 
-    constructor(
-        private _sanitizer: DomSanitizer,
-        private _route: ActivatedRoute,
-        private _title: Title,
-    ) {
-        this._route.data
-          .subscribe(data => {
-              this.page = data.title ? data.title.toLowerCase() : 'home';
-              this._title.setTitle(`Robert Holden » ${this.page}`);
-          });
+    constructor(private _sanitizer: DomSanitizer, private _route: ActivatedRoute, private _title: Title) {
+        this._route.data.subscribe((data) => {
+            this.page = data.title ? data.title.toLowerCase() : 'home';
+            this._title.setTitle(`Robert Holden » ${this.page}`);
+        });
     }
 
     scrollTo(id: string): void {
@@ -33,7 +26,7 @@ export class IndexComponent implements OnInit {
         window.scroll({
             top: element.offsetTop,
             left: 0,
-            behavior: 'smooth'
+            behavior: 'smooth',
         });
     }
 
@@ -50,7 +43,7 @@ export class IndexComponent implements OnInit {
             const el = milestones[i];
             const x = el.getBoundingClientRect().top;
 
-            if (x < (wH - 100)) {
+            if (x < wH - 100) {
                 if (el.className.indexOf('in-view') === -1) {
                     el.className = el.className + ' in-view';
                 }
@@ -60,6 +53,5 @@ export class IndexComponent implements OnInit {
         }
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 }

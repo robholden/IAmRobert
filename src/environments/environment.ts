@@ -4,8 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false,
-  siteUrl: 'http://localhost:4200',
-  endPoint: 'http://localhost:51515',
-  GAtrackingId: ''
+    production: false,
+    siteUrl: 'http://localhost:4200',
+    endPoint: 'http://localhost:51515',
+    GAtrackingId: '',
 };

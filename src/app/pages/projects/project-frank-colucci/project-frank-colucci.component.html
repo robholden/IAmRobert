@@ -1,14 +1,12 @@
 <div class="first">
-    <slideshow [imageUrls]="images" [height]="'50vh'"></slideshow>
+    <slideshow *ngIf="images" [imageUrls]="images" [height]="'50vh'"></slideshow>
 </div>
 
 <section id="project">
     <div class="container">
         <h1>Frank Colucci</h1>
 
-        <p>
-            I was presented with a pre-designed website in which I successfully transformed into a fully customisable site using Wordpress.
-        </p>
+        <p>I was presented with a pre-designed website in which I successfully transformed into a fully customisable site using Wordpress.</p>
 
         <h4>Features</h4>
         <ul>

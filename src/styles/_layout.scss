@@ -23,6 +23,12 @@ section {
     color: $black;
     background-color: $light-grey;
 
+    @media (max-width: 768px) {
+        &.no-bottom {
+            padding-bottom: 0;
+        }
+    }
+
     &.full {
         min-height: calc(100vh - #{$nav-height});
     }

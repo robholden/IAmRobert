@@ -6,7 +6,7 @@ declare const $: any;
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app.component.html'
+    templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
     constructor(private _title: Title, private _router: Router, private _meta: Meta) {
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
         setTimeout(() => {
             $('#cctv').cctv({
                 code: 12345,
-                lockout: true
+                lockout: true,
             });
         }, 0);
     }

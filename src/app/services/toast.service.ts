@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+
 import * as PromptBoxes from 'prompt-boxes';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class ToastService {
     private pb: any;
@@ -15,39 +16,39 @@ export class ToastService {
         this.pb = new PromptBoxes({
             attrPrefix: 'pb',
             speeds: {
-                backdrop: 250,  // The enter/leaving animation speed of the backdrop
-                toasts: 250     // The enter/leaving animation speed of the toast
+                backdrop: 250, // The enter/leaving animation speed of the backdrop
+                toasts: 250, // The enter/leaving animation speed of the toast
             },
             alert: {
-                okText: 'Ok',           // The text for the ok button
-                okClass: '',            // A class for the ok button
+                okText: 'Ok', // The text for the ok button
+                okClass: '', // A class for the ok button
                 closeWithEscape: false, // Allow closing with escaping
-                absolute: false         // Show prompt popup as absolute
+                absolute: false, // Show prompt popup as absolute
             },
             confirm: {
                 confirmText: 'Confirm', // The text for the confirm button
-                confirmClass: '',       // A class for the confirm button
-                cancelText: 'Cancel',   // The text for the cancel button
-                cancelClass: '',        // A class for the cancel button
-                closeWithEscape: true,  // Allow closing with escaping
-                absolute: false         // Show prompt popup as absolute
+                confirmClass: '', // A class for the confirm button
+                cancelText: 'Cancel', // The text for the cancel button
+                cancelClass: '', // A class for the cancel button
+                closeWithEscape: true, // Allow closing with escaping
+                absolute: false, // Show prompt popup as absolute
             },
             prompt: {
-                inputType: 'text',      // The type of input 'text' | 'password' etc.
-                submitText: 'Submit',   // The text for the submit button
-                submitClass: '',        // A class for the submit button
-                cancelText: 'Cancel',   // The text for the cancel button
-                cancelClass: '',        // A class for the cancel button
-                closeWithEscape: true,  // Allow closing with escaping
-                absolute: false         // Show prompt popup as absolute
+                inputType: 'text', // The type of input 'text' | 'password' etc.
+                submitText: 'Submit', // The text for the submit button
+                submitClass: '', // A class for the submit button
+                cancelText: 'Cancel', // The text for the cancel button
+                cancelClass: '', // A class for the cancel button
+                closeWithEscape: true, // Allow closing with escaping
+                absolute: false, // Show prompt popup as absolute
             },
             toasts: {
-                direction: 'top',       // Which direction to show the toast  'top' | 'bottom'
-                max: 5,                 // The number of toasts that can be in the stack
-                duration: 4000,         // The time the toast appears
-                showTimerBar: true,     // Show timer bar countdown
-                allowClose: true        // Whether to show a "x" to close the toast
-            }
+                direction: 'top', // Which direction to show the toast  'top' | 'bottom'
+                max: 5, // The number of toasts that can be in the stack
+                duration: 4000, // The time the toast appears
+                showTimerBar: true, // Show timer bar countdown
+                allowClose: true, // Whether to show a "x" to close the toast
+            },
         });
     }
 
@@ -143,8 +144,7 @@ export class ToastService {
         try {
             if (err.status > 0) this.pb.error(err.error || apiError, duration);
             else this.pb.error(err || apiError);
-        }
-        catch (ex) {
+        } catch (ex) {
             this.pb.error(err || apiError, duration);
         }
     }

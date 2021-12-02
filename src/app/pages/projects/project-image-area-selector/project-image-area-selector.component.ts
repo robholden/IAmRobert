@@ -5,7 +5,7 @@ import * as Selector from 'image-area-selector';
 
 @Component({
     selector: 'app-project-image-area-selector',
-    templateUrl: './project-image-area-selector.component.html'
+    templateUrl: './project-image-area-selector.component.html',
 })
 export class ProjectImageAreaSelectorComponent implements OnInit {
     selector: any;
@@ -35,7 +35,7 @@ export class ProjectImageAreaSelectorComponent implements OnInit {
             minWidth: 100,
             maxWidth: 1000,
             minHeight: 100,
-            maxHeight: 1000
+            maxHeight: 1000,
         });
 
         this.selector.setup(true);

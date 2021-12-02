@@ -27,34 +27,34 @@ export const routerConfig: Routes = [
     {
         path: '',
         component: IndexComponent,
-        data: { title: 'Home' }
+        data: { title: 'Home' },
     },
     {
         path: 'about',
         component: IndexComponent,
-        data: { title: 'About' }
+        data: { title: 'About' },
     },
     {
         path: 'projects',
         component: IndexComponent,
-        data: { title: 'Projects' }
+        data: { title: 'Projects' },
     },
     {
         path: 'skills',
         component: IndexComponent,
-        data: { title: 'Skills' }
+        data: { title: 'Skills' },
     },
     {
         path: 'projects/:project',
         component: ProjectViewComponent,
-        data: { title: 'Project' }
+        data: { title: 'Project' },
     },
 
     {
         path: '**',
         redirectTo: '/',
-        pathMatch: 'full'
-    }
+        pathMatch: 'full',
+    },
 ];
 
 @NgModule({
@@ -72,7 +72,7 @@ export const routerConfig: Routes = [
         AboutComponent,
         ProjectPromptBoxesComponent,
         ProjectCCTVComponent,
-        PopupComponent
+        PopupComponent,
     ],
     imports: [
         BrowserModule,
@@ -81,9 +81,9 @@ export const routerConfig: Routes = [
         HttpClientModule,
         SlideshowModule,
         ClipboardModule,
-        RouterModule.forRoot(routerConfig)
+        RouterModule.forRoot(routerConfig, { relativeLinkResolution: 'legacy' }),
     ],
     providers: [Title, Meta],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

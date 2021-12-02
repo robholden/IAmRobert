@@ -1,20 +1,18 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-popup',
-  templateUrl: './popup.component.html'
+    selector: 'app-popup',
+    templateUrl: './popup.component.html',
 })
 export class PopupComponent {
-  @Input() wide: false;
-  @Input() show: false;
-  @Output() showChange: EventEmitter<String> = new EventEmitter<String>();
+    @Input() wide: false;
+    @Input() show: false;
+    @Output() showChange: EventEmitter<String> = new EventEmitter<String>();
 
-  constructor() {
+    constructor() {}
 
-  }
-
-  hide() {
-    this.show = false;
-    this.showChange.emit();
-  }
+    hide() {
+        this.show = false;
+        this.showChange.emit();
+    }
 }

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-project-view',
-    templateUrl: './project-view.component.html'
+    templateUrl: './project-view.component.html',
 })
 export class ProjectViewComponent implements OnInit {
     private projects: string[] = ['image-area-selector', 'frank-colucci', 'prompt-boxes', 'cctv'];
