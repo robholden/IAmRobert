@@ -9,6 +9,8 @@ declare const $: any;
     templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
+    year = new Date().getFullYear();
+
     constructor(private _title: Title, private _router: Router, private _meta: Meta) {
         _router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {

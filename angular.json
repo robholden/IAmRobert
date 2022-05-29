@@ -4,39 +4,67 @@
     "newProjectRoot": "projects",
     "projects": {
         "frontend": {
-            "root": "",
-            "sourceRoot": "src",
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
-                    "style": "scss"
+                    "inlineTemplate": false,
+                    "inlineStyle": true,
+                    "style": "scss",
+                    "skipTests": true
+                },
+                "@schematics/angular:class": {
+                    "skipTests": true
+                },
+                "@schematics/angular:directive": {
+                    "skipTests": true
+                },
+                "@schematics/angular:guard": {
+                    "skipTests": true
+                },
+                "@schematics/angular:interceptor": {
+                    "skipTests": true
+                },
+                "@schematics/angular:module": {
+                    "skipTests": true
+                },
+                "@schematics/angular:pipe": {
+                    "skipTests": true
+                },
+                "@schematics/angular:service": {
+                    "skipTests": true
                 }
             },
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "hc",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist",
+                        "outputPath": "dist/frontend",
                         "index": "src/index.html",
                         "main": "src/main.ts",
-                        "tsConfig": "src/tsconfig.app.json",
                         "polyfills": "src/polyfills.ts",
-                        "assets": ["src/assets", "src/favicon.ico"],
+                        "tsConfig": "tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets",
+                            {
+                                "glob": "**/*",
+                                "input": "src/.well-known",
+                                "output": ".well-known/"
+                            }
+                        ],
                         "styles": ["src/styles.scss"],
-                        "scripts": [],
-                        "vendorChunk": true,
-                        "extractLicenses": false,
-                        "buildOptimizer": false,
-                        "sourceMap": true,
-                        "optimization": false,
-                        "namedChunks": true
+                        "scripts": []
                     },
                     "configurations": {
                         "production": {
-                            "budgets": [
+                            "fileReplacements": [
                                 {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "6kb"
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -46,15 +74,20 @@
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
-                            "fileReplacements": [
+                            "budgets": [
                                 {
-                                    "replace": "src/environments/environment.ts",
-                                    "with": "src/environments/environment.prod.ts"
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
                                 }
                             ]
                         }
-                    },
-                    "defaultConfiguration": ""
+                    }
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -76,14 +109,5 @@
             }
         }
     },
-    "defaultProject": "frontend",
-    "schematics": {
-        "@schematics/angular:component": {
-            "prefix": "app",
-            "style": "css"
-        },
-        "@schematics/angular:directive": {
-            "prefix": "app"
-        }
-    }
+    "defaultProject": "frontend"
 }
