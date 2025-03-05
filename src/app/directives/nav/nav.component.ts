@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
     selector: 'app-nav',
     templateUrl: 'nav.component.html',
     providers: [Location, { provide: LocationStrategy, useClass: PathLocationStrategy }],
+    standalone: false
 })
 export class NavComponent implements OnInit {
     @Input() routeRedirect: boolean = true;

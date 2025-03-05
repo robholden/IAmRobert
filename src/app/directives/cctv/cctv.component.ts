@@ -4,6 +4,7 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 @Component({
     selector: 'app-cctv',
     templateUrl: 'cctv.component.html',
+    standalone: false
 })
 export class CCTVComponent implements OnInit {
     idleTime = 0;

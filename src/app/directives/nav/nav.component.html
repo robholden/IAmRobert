@@ -1,7 +1,7 @@
 <header [class.show]="show || routeRedirect" [class.init]="init">
     <div class="container">
         <h1>
-            <a routerLink="/" (click)="goTo('home')"> <span>Robert</span> <span>Holden</span> </a>
+            <a [routerLink]="'/'" (click)="goTo('home')"> <span>Robert</span> <span>Holden</span> </a>
         </h1>
 
         <nav>

@@ -6,6 +6,7 @@ import * as Selector from 'image-area-selector';
 @Component({
     selector: 'app-project-image-area-selector',
     templateUrl: './project-image-area-selector.component.html',
+    standalone: false
 })
 export class ProjectImageAreaSelectorComponent implements OnInit {
     selector: any;

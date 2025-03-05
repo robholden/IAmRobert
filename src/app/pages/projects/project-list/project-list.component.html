@@ -3,7 +3,20 @@
         <h1 class="milestone fade-up">Projects</h1>
 
         <div class="milestone fade-left">
-            <a routerLink="/projects/frank-colucci" class="project-card">
+            <a [routerLink]="'/projects/score-caddy'" class="project-card">
+                <img src="/assets/images/projects/score-caddy.jpg" />
+                <div>
+                    <h3>Score Caddy</h3>
+                    <p>A smart caddy that helps you during your round of golf.</p>
+                </div>
+                <p>
+                    <i class="fa fa-angle-right"></i>
+                </p>
+            </a>
+        </div>
+
+        <div class="milestone fade-left">
+            <a [routerLink]="'/projects/frank-colucci'" class="project-card">
                 <img src="/assets/images/projects/frank-colucci.jpg" />
                 <div>
                     <h3>Wordpress - Frank Colucci</h3>
@@ -16,7 +29,7 @@
         </div>
 
         <div class="milestone fade-left">
-            <a routerLink="/projects/image-area-selector" class="project-card">
+            <a [routerLink]="'/projects/image-area-selector'" class="project-card">
                 <img src="/assets/images/projects/image-area-selector.png" />
                 <div>
                     <h3>Image Area Selector</h3>
@@ -29,7 +42,7 @@
         </div>
 
         <div class="milestone fade-left">
-            <a routerLink="/projects/prompt-boxes" class="project-card">
+            <a [routerLink]="'/projects/prompt-boxes'" class="project-card">
                 <img src="/assets/images/projects/prompt-boxes.png" />
                 <div>
                     <h3>Prompt Boxes</h3>
@@ -42,7 +55,7 @@
         </div>
 
         <div class="milestone fade-left">
-            <a routerLink="/projects/cctv" class="project-card">
+            <a [routerLink]="'/projects/cctv'" class="project-card">
                 <img src="/assets/images/projects/cctv.png" />
                 <div>
                     <h3>CCTV</h3>

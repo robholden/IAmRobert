@@ -6,6 +6,7 @@ import { ToastService } from '../../../services/toast.service';
 @Component({
     selector: 'app-project-prompt-boxes',
     templateUrl: './project-prompt-boxes.component.html',
+    standalone: false
 })
 export class ProjectPromptBoxesComponent implements OnInit {
     constructor(private _title: Title, private _toast: ToastService) {

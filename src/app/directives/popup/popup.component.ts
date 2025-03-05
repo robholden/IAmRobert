@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
     selector: 'app-popup',
     templateUrl: './popup.component.html',
+    standalone: false
 })
 export class PopupComponent {
     @Input() wide: false;

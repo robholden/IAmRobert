@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule, Meta, Title } from '@angular/platform-browser';
@@ -20,8 +20,8 @@ import { ProjectPromptBoxesComponent } from './pages/projects/project-prompt-box
 import { ProjectViewComponent } from './pages/projects/project-view/project-view.component';
 import { SkillsComponent } from './pages/skills/skills.component';
 
-import { SlideshowModule } from 'ng-simple-slideshow';
 import { ClipboardModule } from 'ngx-clipboard';
+import { ProjectScoreCaddyComponent } from './pages/projects/project-scorecaddy/project-scorecaddy.component';
 
 export const routerConfig: Routes = [
     {
@@ -68,22 +68,15 @@ export const routerConfig: Routes = [
         ProjectListComponent,
         ProjectFrankColucciComponent,
         ProjectImageAreaSelectorComponent,
+        ProjectScoreCaddyComponent,
         SkillsComponent,
         AboutComponent,
         ProjectPromptBoxesComponent,
         ProjectCCTVComponent,
         PopupComponent,
     ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        CommonModule,
-        HttpClientModule,
-        SlideshowModule,
-        ClipboardModule,
-        RouterModule.forRoot(routerConfig, { relativeLinkResolution: 'legacy' }),
-    ],
-    providers: [Title, Meta],
     bootstrap: [AppComponent],
+    imports: [BrowserModule, FormsModule, CommonModule, ClipboardModule, RouterModule.forRoot(routerConfig, {})],
+    providers: [Title, Meta, provideHttpClient(withInterceptorsFromDi())],
 })
 export class AppModule {}

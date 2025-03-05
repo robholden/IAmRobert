@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
     selector: 'app-project',
     templateUrl: './project.component.html',
+    standalone: false
 })
 export class ProjectComponent implements OnInit {
     @Input() id: string = '';

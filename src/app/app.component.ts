@@ -7,6 +7,7 @@ declare const $: any;
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
+    standalone: false,
 })
 export class AppComponent implements OnInit {
     year = new Date().getFullYear();

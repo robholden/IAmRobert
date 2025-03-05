@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
     selector: 'app-project-cctv',
     templateUrl: './project-cctv.component.html',
+    standalone: false
 })
 export class ProjectCCTVComponent implements OnInit {
     constructor(private _title: Title) {

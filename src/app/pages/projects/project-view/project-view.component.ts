@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
     selector: 'app-project-view',
     templateUrl: './project-view.component.html',
+    standalone: false,
 })
 export class ProjectViewComponent implements OnInit {
-    private projects: string[] = ['image-area-selector', 'frank-colucci', 'prompt-boxes', 'cctv'];
+    private projects: string[] = ['image-area-selector', 'frank-colucci', 'prompt-boxes', 'cctv', 'score-caddy'];
     public project: string = '';
 
     constructor(private _route: ActivatedRoute, private _router: Router) {
